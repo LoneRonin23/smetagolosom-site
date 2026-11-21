@@ -1168,6 +1168,36 @@
     }
     .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
     .footer-links a:hover { color: #FFFFFF; }
+    .pricing-legal-note {
+      margin-top: 26px;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-dark);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .pricing-legal-note a {
+      color: var(--gold-bright);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .footer-legal {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      font-size: 12.5px;
+      color: var(--text-tertiary);
+    }
+    .footer-legal a { color: var(--text-secondary); }
+    .footer-legal a:hover { color: #FFFFFF; }
 
     /* RESPONSIVE */
     @media (max-width: 1020px) {
@@ -1782,6 +1812,11 @@
           <a class="btn btn-glass" href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Обсудить внедрение</a>
         </div>
       </div>
+
+      <div class="pricing-legal-note reveal">
+        Оплата по РФ: банковские карты (МИР, Visa, Mastercard), СБП и ЮKassa · Разовая оплата за 30 дней без скрытых автосписаний · Официальный чек самозанятого (НПД).<br />
+        Оплачивая тариф, вы соглашаетесь с <a href="/offer.html">публичной офертой</a>, <a href="/offer.html#refund">условиями возврата</a> и <a href="/privacy.html">политикой конфиденциальности</a>.
+      </div>
     </div>
   </section>
 
@@ -1843,17 +1878,30 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container footer-grid">
-      <div class="brand" style="font-size:16px;">
-        <img src="/favicon.png" alt="СметаГолосом" style="width:28px; height:28px; border-radius:8px;" />
-        <span>Смета<span class="brand-accent">Голосом</span></span>
-        <span style="font-family:var(--font-sans); font-weight:400; font-size:13px; color:var(--text-tertiary); margin-left:6px;">© 2026</span>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand" style="font-size:16px;">
+          <img src="/favicon.png" alt="СметаГолосом" style="width:28px; height:28px; border-radius:8px;" />
+          <span>Смета<span class="brand-accent">Голосом</span></span>
+          <span style="font-family:var(--font-sans); font-weight:400; font-size:13px; color:var(--text-tertiary); margin-left:6px;">© 2026</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Telegram @voicesmetabot</a>
+          <a href="https://vk.ru/club243551967" target="_blank" rel="noopener">Сообщество ВКонтакте</a>
+          <a href="/sample_smeta.pdf" target="_blank" rel="noopener">Пример PDF</a>
+          <a href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Поддержка @mynameisdeath13</a>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Telegram @voicesmetabot</a>
-        <a href="https://vk.ru/club243551967" target="_blank" rel="noopener">Сообщество ВКонтакте</a>
-        <a href="/sample_smeta.pdf" target="_blank" rel="noopener">Пример PDF</a>
-        <a href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Поддержка @mynameisdeath13</a>
+      <div class="footer-legal">
+        <div>
+          Самозанятый (плательщик НПД) Евдокимов Вадим · ИНН <span class="mono">560915812401</span> ·
+          <a href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a>
+        </div>
+        <div class="footer-links" style="gap:16px;">
+          <a href="/offer.html">Публичная оферта</a>
+          <a href="/offer.html#refund">Оплата и возврат</a>
+          <a href="/privacy.html">Политика конфиденциальности</a>
+        </div>
       </div>
     </div>
   </footer>

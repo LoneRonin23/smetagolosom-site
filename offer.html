@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Публичная оферта — СметаГолосом</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="description" content="Публичная оферта на оказание услуг доступа к онлайн-сервису СметаГолосом: тарифы, порядок оплаты, активации и возврата денежных средств." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #060911;
+      --bg-1: #0B101D;
+      --surface-light: #F7F8FA;
+      --surface-white: #FFFFFF;
+      --gold: #F59E0B;
+      --gold-deep: #D97706;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-tertiary: #64748B;
+      --ink-dark: #0B1120;
+      --ink-muted: #475569;
+      --line-dark: rgba(255, 255, 255, 0.08);
+      --line-light: #E2E8F0;
+      --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--surface-light);
+      color: var(--ink-dark);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold-deep); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+    header.nav {
+      background: rgba(6, 9, 17, 0.96);
+      border-bottom: 1px solid var(--line-dark);
+      color: var(--text-primary);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .brand-accent { color: var(--gold); }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line-dark);
+      background: rgba(255,255,255,0.03);
+      text-decoration: none;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .nav-back:hover {
+      color: #FFFFFF;
+      border-color: rgba(255,255,255,0.2);
+      text-decoration: none;
+    }
+
+    main { padding: 48px 0 72px; }
+    .doc-card {
+      background: var(--surface-white);
+      border: 1px solid var(--line-light);
+      border-radius: 20px;
+      padding: 44px 48px;
+      box-shadow: 0 14px 40px -12px rgba(11, 17, 32, 0.06);
+    }
+    .doc-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.6vw, 34px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink-dark);
+      margin-bottom: 12px;
+    }
+    .doc-meta {
+      font-size: 14px;
+      color: var(--ink-muted);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--line-light);
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-dark);
+      margin-top: 32px;
+      margin-bottom: 12px;
+      scroll-margin-top: 84px;
+    }
+    p { margin-bottom: 12px; color: #1E293B; font-size: 15px; }
+    ul { margin: 8px 0 16px 22px; color: #1E293B; font-size: 15px; }
+    li { margin-bottom: 7px; }
+    strong { color: var(--ink-dark); }
+
+    .tariff-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14.5px;
+    }
+    .tariff-table th, .tariff-table td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line-light);
+      vertical-align: top;
+    }
+    .tariff-table th {
+      background: #F8FAFC;
+      font-weight: 600;
+      color: var(--ink-dark);
+    }
+    .mono { font-family: var(--font-mono); white-space: nowrap; }
+
+    .highlight-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 18px 0;
+      font-size: 14.5px;
+      color: #451A03;
+    }
+    .req-box {
+      background: #F8FAFC;
+      border: 1px solid var(--line-light);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-top: 16px;
+      font-size: 14.5px;
+    }
+    .req-box p { margin-bottom: 6px; }
+    .req-box p:last-child { margin-bottom: 0; }
+
+    footer {
+      background: var(--bg-0);
+      color: var(--text-secondary);
+      border-top: 1px solid var(--line-dark);
+      padding: 28px 0;
+      font-size: 13.5px;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { color: var(--text-secondary); }
+    .footer-links a:hover { color: #FFFFFF; text-decoration: none; }
+
+    @media (max-width: 720px) {
+      .doc-card { padding: 26px 20px; }
+      .tariff-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="brand">
+        <img src="/favicon.png" alt="СметаГолосом" />
+        <span>Смета<span class="brand-accent">Голосом</span></span>
+      </a>
+      <a href="/" class="nav-back">← Вернуться на главную</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article class="doc-card">
+        <div class="doc-kicker">Юридическая информация</div>
+        <h1>Публичная оферта на оказание информационных услуг сервиса «СметаГолосом»</h1>
+        <div class="doc-meta">
+          Редакция от 21 ноября 2026 года · Действует на территории Российской Федерации · Сайт: <a href="https://smetagolosom.ru/">https://smetagolosom.ru/</a>
+        </div>
+
+        <p>Настоящий документ является официальным предложением (публичной офертой) физического лица — плательщика налога на профессиональный доход (самозанятого) <strong>Евдокимова Вадима</strong> (ИНН 560915812401), далее именуемого <strong>«Исполнитель»</strong>, адресованным любому дееспособному физическому лицу, индивидуальному предпринимателю или юридическому лицу, далее именуемому <strong>«Заказчик»</strong>, заключить договор возмездного оказания услуг по предоставлению доступа к цифровому сервису <strong>«СметаГолосом»</strong> на условиях, изложенных ниже.</p>
+        <p>В соответствии с пунктом 2 статьи 437 Гражданского кодекса Российской Федерации (ГК РФ) в случае принятия изложенных ниже условий и оплаты услуг лицо, производящее акцепт настоящей оферты, становится Заказчиком (пункт 3 статьи 438 ГК РФ — акцепт оферты равносилен заключению договора на условиях, изложенных в оферте).</p>
+
+        <h2>1. Термины и предмет договора</h2>
+        <p><strong>1.1. Сервис «СметаГолосом»</strong> — собственная программная разработка Исполнителя, доступная на сайте <a href="https://smetagolosom.ru/">https://smetagolosom.ru/</a>, в мессенджере Telegram (<a href="https://t.me/voicesmetabot" target="_blank" rel="noopener">@voicesmetabot</a>) и в сообществе ВКонтакте (<a href="https://vk.ru/club243551967" target="_blank" rel="noopener">vk.ru/club243551967</a>), предназначенная для автоматизированного формирования смет и коммерческих предложений в форматах PDF и Excel (XLSX) на основе голосовых и текстовых описаний Заказчика и его прайс-листа.</p>
+        <p><strong>1.2. Предмет договора:</strong> Исполнитель обязуется предоставить Заказчику удалённый доступ к функционалу Сервиса в объёме выбранного тарифа на оплаченный срок, а Заказчик обязуется оплатить услуги в соответствии с условиями настоящей оферты.</p>
+        <p><strong>1.3. Статус Исполнителя:</strong> Исполнитель применяет специальный налоговый режим «Налог на профессиональный доход» (Федеральный закон № 422-ФЗ), оказывает услуги лично без привлечения наёмных работников, НДС не облагается.</p>
+
+        <h2>2. Тарифы и стоимость услуг</h2>
+        <p>2.1. Актуальная стоимость и состав тарифов указаны на сайте <a href="https://smetagolosom.ru/#pricing">smetagolosom.ru</a> и в интерфейсе ботов Сервиса:</p>
+
+        <table class="tariff-table">
+          <thead>
+            <tr>
+              <th>Тариф</th>
+              <th>Стоимость</th>
+              <th>Срок действия</th>
+              <th>Состав услуг и лимиты</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Бесплатный тест</strong></td>
+              <td class="mono">0 ₽</td>
+              <td>Бессрочно</td>
+              <td>До 3 смет (PDF + Excel) для проверки качества работы без привязки банковской карты.</td>
+            </tr>
+            <tr>
+              <td><strong>Старт</strong></td>
+              <td class="mono">2 900 ₽</td>
+              <td>30 календарных дней</td>
+              <td>До 50 смет и голосовых правок за период, брендированный PDF с логотипом, Excel с формулами, загрузка своего прайс-листа (CSV), экспорт реестра смет.</td>
+            </tr>
+            <tr>
+              <td><strong>Профи</strong></td>
+              <td class="mono">4 900 ₽</td>
+              <td>30 календарных дней</td>
+              <td>До 150 смет и голосовых правок за период, помощь с переносом и настройкой прайс-листа, автовыгрузка в Google Таблицы, единый доступ Telegram + ВКонтакте, приоритетная поддержка.</td>
+            </tr>
+            <tr>
+              <td><strong>Бизнес под ключ</strong></td>
+              <td class="mono">от 25 000 ₽</td>
+              <td>По согласованному ТЗ</td>
+              <td>Индивидуальное развёртывание и настройка выделенного бота под бренд компании (условия и сроки согласуются отдельно).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>2.2. Все цены указаны в рублях Российской Федерации. Исполнитель вправе изменять тарифы для новых оплат с публикацией новых цен на сайте; стоимость уже оплаченного Заказчиком периода пересмотру не подлежит.</p>
+
+        <h2 id="payment">3. Порядок оплаты и предоставления доступа</h2>
+        <p>3.1. Оплата тарифов осуществляется на условиях 100% предоплаты за выбранный расчётный период (30 календарных дней) с помощью доступных способов онлайн-оплаты:</p>
+        <ul>
+          <li>банковские карты платёжных систем МИР, Visa, Mastercard, а также Система быстрых платежей (СБП), SberPay и ЮMoney через платёжный сервис <strong>ЮKassa</strong>;</li>
+          <li>прямой перевод по Системе быстрых платежей (СБП) по реквизитам, отображаемым в интерфейсе бота Сервиса.</li>
+        </ul>
+        <div class="highlight-box">
+          <strong>Без скрытых автосписаний:</strong> оплата тарифа «Старт» или «Профи» является разовой за 30 календарных дней. По окончании срока доступ автоматически не списывает средства с карты — Заказчик сам решает, продлевать ли тариф на следующий период.
+        </div>
+        <p>3.2. <strong>Срок активации (предоставления услуги):</strong> при онлайн-оплате через ЮKassa платный тариф и лимиты активируются в аккаунте Заказчика в Telegram и/или ВКонтакте автоматически в течение <strong>1–5 минут</strong> после подтверждения платежа платёжной системой (в исключительных случаях — не позднее 24 часов). При оплате по СБП активация происходит после подтверждения поступления средств (обычно в течение 5–15 минут в рабочее время, но не позднее 24 часов).</p>
+        <p>3.3. <strong>Фискальный чек:</strong> после поступления оплаты Исполнитель формирует электронный чек самозанятого в приложении ФНС России «Мой налог» (422-ФЗ) и направляет его Заказчику на электронную почту или в мессенджер.</p>
+        <p>3.4. Обязательства Исполнителя по предоставлению доступа считаются исполненными надлежащим образом с момента активации оплаченного тарифа и лимитов в учётной записи Заказчика в Сервисе.</p>
+
+        <h2 id="refund">4. Условия возврата денежных средств</h2>
+        <p>4.1. Заказчик имеет право на <strong>полный возврат</strong> уплаченной суммы в течение <strong>14 календарных дней</strong> с момента оплаты, если в оплаченном периоде Заказчик не воспользовался платным тарифом (не было создано ни одной новой сметы или голосовой правки в счёт оплаченного тарифа) либо если доступ к Сервису не был предоставлен по вине Исполнителя.</p>
+        <p>4.2. Если Заказчик уже частично использовал оплаченный тариф и столкнулся с неустранимой технической неисправностью Сервиса по вине Исполнителя (недоступность более 48 часов подряд), Исполнитель по выбору Заказчика бесплатно продлевает срок действия тарифа на период простоя либо возвращает денежные средства пропорционально неиспользованным дням/лимиту смет.</p>
+        <p>4.3. Для оформления возврата Заказчик направляет обращение на электронную почту <a href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a> с указанием даты оплаты, суммы, идентификатора аккаунта в Telegram или ВКонтакте и причины возврата.</p>
+        <p>4.4. Срок рассмотрения заявления на возврат — до <strong>3 рабочих дней</strong>. Возврат денежных средств осуществляется исключительно тем же способом (на ту же банковскую карту или счёт, с которых производилась оплата) в течение <strong>5–10 рабочих дней</strong> после одобрения заявки (точный срок зачисления зависит от банка-эмитента Заказчика).</p>
+
+        <h2>5. Права, обязанности и ответственность сторон</h2>
+        <p>5.1. Заказчик обязуется не использовать Сервис для противоправных целей, не предпринимать попыток несанкционированного доступа к программной инфраструктуре Сервиса и не передавать доступ к своему оплаченному аккаунту третьим лицам в коммерческих целях перепродажи.</p>
+        <p>5.2. Сервис является инструментом автоматизации подготовки предварительных расчётов, смет и коммерческих предложений. Заказчик самостоятельно проверяет сформированные PDF- и Excel-документы на соответствие своим ценам, объёмам и договорным условиям перед передачей конечным клиентам. Исполнитель не несёт ответственности за коммерческие решения и упущенную выгоду Заказчика, возникшие вследствие использования непроверенных документов.</p>
+        <p>5.3. Исполнитель обеспечивает конфиденциальность загружаемых Заказчиком прайс-листов, логотипов и истории смет в соответствии с <a href="/privacy.html">Политикой конфиденциальности</a>.</p>
+
+        <h2>6. Порядок разрешения споров</h2>
+        <p>6.1. Все вопросы и претензии, связанные с работой Сервиса и исполнением настоящей оферты, направляются на электронную почту <a href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a>. Срок ответа на претензию — не более 10 рабочих дней с даты получения.</p>
+        <p>6.2. При невозможности урегулирования спора в досудебном порядке спор подлежит рассмотрению в соответствии с действующим законодательством Российской Федерации.</p>
+
+        <h2>7. Реквизиты и контакты Исполнителя</h2>
+        <div class="req-box">
+          <p><strong>Исполнитель:</strong> Евдокимов Вадим (физическое лицо, плательщик налога на профессиональный доход / самозанятый)</p>
+          <p><strong>ИНН:</strong> <span class="mono">560915812401</span></p>
+          <p><strong>Электронная почта (поддержка и возвраты):</strong> <a href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a></p>
+          <p><strong>Telegram-поддержка:</strong> <a href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">@mynameisdeath13</a></p>
+          <p><strong>Боты Сервиса:</strong> Telegram <a href="https://t.me/voicesmetabot" target="_blank" rel="noopener">@voicesmetabot</a> · ВКонтакте <a href="https://vk.ru/club243551967" target="_blank" rel="noopener">vk.ru/club243551967</a></p>
+          <p><strong>Сайт:</strong> <a href="https://smetagolosom.ru/">https://smetagolosom.ru/</a></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 СметаГолосом · Самозанятый Евдокимов Вадим · ИНН 560915812401</div>
+      <div class="footer-links">
+        <a href="/">Главная</a>
+        <a href="/offer.html">Публичная оферта</a>
+        <a href="/privacy.html">Политика конфиденциальности</a>
+        <a href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
