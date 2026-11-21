@@ -1179,6 +1179,31 @@
       text-align: center;
       line-height: 1.6;
     }
+    .price-cta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .price-vk-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #93C5FD;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      background: rgba(59, 130, 246, 0.08);
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .price-vk-link:hover {
+      background: rgba(59, 130, 246, 0.16);
+      border-color: rgba(96, 165, 250, 0.5);
+      color: #DBEAFE;
+    }
     .pricing-legal-note a {
       color: var(--gold-bright);
       text-decoration: underline;
@@ -1752,7 +1777,10 @@
               <div style="font-size:12.5px; color:#94A3B8; margin-bottom:4px;">Подписка от 2 900 ₽/мес</div>
               <span class="roi-badge" id="res-roi">ROI ×51</span>
             </div>
-            <a class="btn btn-primary" href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Проверить бесплатно</a>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="btn btn-primary" href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Проверить в Telegram</a>
+              <a class="btn btn-glass" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">Во ВКонтакте</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1780,7 +1808,10 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Выгрузка реестра всех смет в Excel</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>3 реальные сметы бесплатно без карты</span></li>
           </ul>
-          <a class="btn btn-glass" href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Начать бесплатно</a>
+          <div class="price-cta-stack">
+            <a class="btn btn-glass" href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Начать в Telegram</a>
+            <a class="price-vk-link" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">Открыть во ВКонтакте (без VPN)</a>
+          </div>
         </div>
 
         <div class="price-card featured reveal">
@@ -1795,7 +1826,10 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Единый доступ в Telegram + ВКонтакте</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Приоритетная поддержка в Telegram</span></li>
           </ul>
-          <a class="btn btn-primary" href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Подключить Профи</a>
+          <div class="price-cta-stack">
+            <a class="btn btn-primary" href="https://t.me/voicesmetabot" target="_blank" rel="noopener">Подключить Профи (Telegram)</a>
+            <a class="price-vk-link" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">Подключить во ВКонтакте (без VPN)</a>
+          </div>
         </div>
 
         <div class="price-card reveal">
@@ -1809,7 +1843,10 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Несколько прайс-листов (Эконом / Бизнес / VIP)</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Запуск под ключ за 2–4 рабочих дня</span></li>
           </ul>
-          <a class="btn btn-glass" href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Обсудить внедрение</a>
+          <div class="price-cta-stack">
+            <a class="btn btn-glass" href="https://t.me/mynameisdeath13" target="_blank" rel="noopener">Обсудить в Telegram</a>
+            <a class="price-vk-link" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">Написать во ВКонтакте (без VPN)</a>
+          </div>
         </div>
       </div>
 
