@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>СтомаЩит — Служба заботы о пациентах</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<style>
+  :root {
+    --navy:#0f172a; --teal:#0d9488; --teal-soft:#ccfbf1; --teal-dark:#0f766e;
+    --gold:#d97706; --gold-soft:#fef3c7; --danger:#dc2626; --danger-soft:#fee2e2;
+    --bg:#f1f5f9; --card:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e2e8f0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:linear-gradient(160deg,#e2f4f1 0%,#f8fafc 45%,#eef2f6 100%);
+    color:var(--text); min-height:100vh; padding:16px 14px 44px;
+  }
+  .shell { max-width:460px; margin:0 auto; }
+  .mode-bar {
+    display:flex; background:#e2e8f0; border-radius:14px; padding:4px; margin-bottom:14px; gap:4px;
+  }
+  .mode-btn {
+    flex:1; border:none; background:transparent; padding:9px 10px; border-radius:10px;
+    font-weight:700; font-size:13px; color:#475569; cursor:pointer; transition:.2s;
+  }
+  .mode-btn.active { background:#fff; color:var(--navy); box-shadow:0 2px 8px rgba(15,23,42,.08); }
+  .card {
+    background:var(--card); border-radius:22px; padding:22px 20px;
+    box-shadow:0 16px 40px -14px rgba(15,23,42,.14); border:1px solid rgba(226,232,240,.9);
+  }
+  .clinic-head { text-align:center; padding-bottom:16px; border-bottom:1px solid var(--border); margin-bottom:18px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:6px; background:var(--teal-soft); color:var(--teal-dark);
+    font-size:11px; font-weight:700; padding:4px 10px; border-radius:999px; letter-spacing:.3px; margin-bottom:10px;
+  }
+  .clinic-name { font-size:21px; font-weight:800; color:var(--navy); line-height:1.25; }
+  .clinic-sub { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  .clinic-addr { font-size:12px; color:#0f766e; font-weight:600; margin-top:4px; }
+  .stars-wrap { display:flex; justify-content:center; gap:8px; margin:16px 0 8px; }
+  .star-btn {
+    width:54px; height:54px; border-radius:16px; border:2px solid var(--border); background:#f8fafc;
+    font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:transform .15s, border-color .15s, background .15s; color:#cbd5e1;
+  }
+  .star-btn:hover { transform:translateY(-2px); }
+  .star-btn.lit { border-color:#f59e0b; background:#fffbeb; color:#f59e0b; transform:scale(1.04); }
+  .star-hint { text-align:center; font-size:13px; font-weight:600; color:var(--muted); min-height:20px; margin-bottom:14px; }
+  .field-lbl { font-size:12px; font-weight:700; color:#334155; margin:12px 0 6px; display:block; }
+  select, textarea, input {
+    width:100%; border:1.5px solid var(--border); border-radius:12px; padding:11px 12px;
+    font-size:14px; font-family:inherit; background:#fff; color:var(--text); outline:none; transition:.15s;
+  }
+  select:focus, textarea:focus, input:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(13,148,136,.12); }
+  .chips { display:flex; flex-wrap:wrap; gap:7px; margin:8px 0 12px; }
+  .chip {
+    border:1.5px solid var(--border); background:#f8fafc; color:#334155; font-size:12.5px; font-weight:600;
+    padding:7px 11px; border-radius:999px; cursor:pointer; transition:.15s;
+  }
+  .chip.on { background:var(--teal-soft); border-color:var(--teal); color:var(--teal-dark); }
+  .chip.neg.on { background:var(--danger-soft); border-color:var(--danger); color:#991b1b; }
+  .section { display:none; animation:fade .22s ease; }
+  .section.show { display:block; }
+  @keyframes fade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  .draft-box {
+    background:#f0fdfa; border:1.5px dashed #14b8a6; border-radius:14px; padding:12px 14px;
+    font-size:13.5px; line-height:1.45; color:#134e4a; margin:10px 0 12px;
+  }
+  .btn {
+    width:100%; border:none; border-radius:14px; padding:13px 16px; font-size:14.5px; font-weight:700;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;
+    transition:.15s; margin-top:8px;
+  }
+  .btn:active { transform:scale(.98); }
+  .btn-teal { background:var(--teal); color:#fff; }
+  .btn-navy { background:var(--navy); color:#fff; }
+  .btn-danger { background:#b91c1c; color:#fff; }
+  .btn-tg { background:#0284c7; color:#fff; }
+  .btn-ghost { background:#f1f5f9; color:#334155; border:1px solid var(--border); }
+  .map-grid { display:grid; grid-template-columns:1fr; gap:8px; margin-top:10px; }
+  .map-btn {
+    padding:12px 14px; border-radius:13px; text-decoration:none; font-weight:700; font-size:14px;
+    display:flex; align-items:center; justify-content:space-between; color:#fff;
+  }
+  .m-ya { background:#fc3f1d; }
+  .m-pd { background:#0284c7; }
+  .m-2g { background:#16a34a; }
+  .shield-banner {
+    background:#fff7ed; border:1.5px solid #fdba74; border-radius:14px; padding:12px 14px;
+    font-size:13px; color:#9a3412; line-height:1.45; margin-bottom:12px;
+  }
+  .alert-demo {
+    background:#0f172a; color:#e2e8f0; border-radius:16px; padding:14px 15px; margin-top:14px;
+    font-size:12.5px; line-height:1.5; border-left:4px solid #ef4444;
+  }
+  .alert-demo strong { color:#fca5a5; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+  .kpi {
+    background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:11px 8px; text-align:center;
+  }
+  .kpi .v { font-size:19px; font-weight:800; color:var(--navy); }
+  .kpi .l { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.2; }
+  .kpi.good .v { color:var(--teal); }
+  .kpi.warn .v { color:#b91c1c; }
+  .doc-row {
+    display:flex; justify-content:space-between; align-items:center; padding:10px 0;
+    border-bottom:1px solid var(--border); font-size:13px; gap:10px;
+  }
+  .doc-score { font-weight:800; padding:3px 9px; border-radius:8px; font-size:12px; white-space:nowrap; }
+  .score-hi { background:#dcfce7; color:#166534; }
+  .score-warn { background:#fee2e2; color:#991b1b; }
+  .log-item {
+    background:#fef2f2; border:1px solid #fecaca; border-radius:12px; padding:10px 12px;
+    margin-top:8px; font-size:12.5px; line-height:1.4; color:#7f1d1d;
+  }
+  .switcher-box {
+    background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:14px; padding:11px 12px; margin-bottom:14px;
+  }
+  .foot-note { text-align:center; font-size:11.5px; color:#94a3b8; margin-top:16px; line-height:1.4; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="mode-bar">
+    <button class="mode-btn active" id="tabPatient" onclick="switchTab('patient')">📱 Экран пациента (QR)</button>
+    <button class="mode-btn" id="tabOwner" onclick="switchTab('owner')">🛡 Кабинет директора</button>
+  </div>
+
+  <!-- PATIENT VIEW -->
+  <div class="card" id="viewPatient">
+    <div class="clinic-head">
+      <div class="badge">● СЛУЖБА ЗАБОТЫ О ПАЦИЕНТАХ</div>
+      <div class="clinic-name" id="clinicTitle">Стоматология</div>
+      <div class="clinic-addr" id="clinicAddr"></div>
+      <div class="clinic-sub">Оцените сегодняшний визит за 15 секунд.<br/>Ваш отзыв читает лично главный врач.</div>
+    </div>
+
+    <label class="field-lbl" for="docSelect">У какого специалиста вы были? (необязательно)</label>
+    <select id="docSelect"></select>
+
+    <div class="stars-wrap" id="starsWrap">
+      <button class="star-btn" data-v="1" onclick="pickStar(1)" aria-label="1 звезда">★</button>
+      <button class="star-btn" data-v="2" onclick="pickStar(2)" aria-label="2 звезды">★</button>
+      <button class="star-btn" data-v="3" onclick="pickStar(3)" aria-label="3 звезды">★</button>
+      <button class="star-btn" data-v="4" onclick="pickStar(4)" aria-label="4 звезды">★</button>
+      <button class="star-btn" data-v="5" onclick="pickStar(5)" aria-label="5 звёзд">★</button>
+    </div>
+    <div class="star-hint" id="starHint">Нажмите на звёздочку от 1 до 5</div>
+
+    <!-- 4-5 STARS FLOW -->
+    <div class="section" id="secPositive">
+      <div class="field-lbl">Что особенно понравилось? (нажмите — текст соберётся сам)</div>
+      <div class="chips" id="posChips"></div>
+      <div class="draft-box" id="reviewDraft"></div>
+      <button class="btn btn-teal" id="copyBtn" onclick="copyReview()">📋 Скопировать готовый отзыв</button>
+      <div class="field-lbl" style="text-align:center;margin-top:14px;">Вставьте в удобную площадку (1 клик):</div>
+      <div class="map-grid">
+        <a class="map-btn m-ya" id="linkYandex" target="_blank" rel="noopener"><span>Яндекс Карты · Оставить 5 ★</span><span>→</span></a>
+        <a class="map-btn m-pd" id="linkProdoc" target="_blank" rel="noopener"><span>ПроДокторов · Поддержать врача</span><span>→</span></a>
+        <a class="map-btn m-2g" id="link2gis" target="_blank" rel="noopener"><span>2ГИС · Оставить отзыв</span><span>→</span></a>
+      </div>
+    </div>
+
+    <!-- 1-3 STARS INTERCEPT FLOW -->
+    <div class="section" id="secNegative">
+      <div class="shield-banner">
+        <strong>Нам очень жаль, что визит прошёл неидеально.</strong><br/>
+        Напишите напрямую главному врачу — мы разберёмся сегодня и свяжемся с вами в течение 15 минут.
+      </div>
+      <div class="field-lbl">Что пошло не так?</div>
+      <div class="chips" id="negChips"></div>
+      <label class="field-lbl" for="negText">Опишите ситуацию в двух словах:</label>
+      <textarea id="negText" rows="3" placeholder="Например: пришлось ждать 20 минут / не объяснили итоговую цену..."></textarea>
+      <label class="field-lbl" for="negPhone">Телефон для связи с главврачом (по желанию):</label>
+      <input id="negPhone" type="tel" placeholder="+7 (900) 000-00-00" />
+      <button class="btn btn-danger" onclick="sendIntercept()">🔒 Отправить лично главному врачу</button>
+    </div>
+
+    <!-- INTERCEPT CONFIRMATION + LIVE DEMO ALERT -->
+    <div class="section" id="secInterceptDone">
+      <div style="text-align:center;padding:8px 0 4px;">
+        <div style="font-size:38px;">✅</div>
+        <div style="font-size:17px;font-weight:800;color:var(--navy);margin-top:6px;">Обращение передано главному врачу</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;">Спасибо за обратную связь — свяжемся с вами в ближайшее время.</div>
+      </div>
+      <div class="alert-demo" id="demoAlertPreview"></div>
+      <a class="btn btn-tg" id="tgShareBtn" target="_blank" rel="noopener">✈️ Переслать этот алерт в Telegram (тест доставки)</a>
+      <button class="btn btn-ghost" onclick="resetDemo()">↻ Проверить другой сценарий (демо)</button>
+    </div>
+  </div>
+
+  <!-- OWNER ANALYTICS VIEW -->
+  <div class="card" id="viewOwner" style="display:none;">
+    <div class="clinic-head" style="text-align:left;padding-bottom:12px;">
+      <div class="badge">● КАБИНЕТ РУКОВОДИТЕЛЯ · СТОМАЩИТ</div>
+      <div class="clinic-name" style="font-size:18px;" id="ownerClinicTitle">Аналитика клиники</div>
+      <div class="clinic-sub" id="ownerLprLine"></div>
+    </div>
+
+    <div class="switcher-box">
+      <label class="field-lbl" for="clinicSwitcher" style="margin-top:0;">Быстро переключить клинику (Рязань · 12 клиник):</label>
+      <select id="clinicSwitcher"></select>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi good"><div class="v" id="kpiPos">89</div><div class="l">5★ ушли на Карты / ПроДокторов</div></div>
+      <div class="kpi warn"><div class="v" id="kpiNeg">7</div><div class="l">1–3★ перехвачено до публикации</div></div>
+      <div class="kpi"><div class="v">4.94</div><div class="l">Прогноз рейтинга за 60 дней</div></div>
+    </div>
+
+    <div class="field-lbl">Внутренний рейтинг по врачам и ресепшену (демо):</div>
+    <div id="ownerDocsList"></div>
+
+    <div class="field-lbl" style="margin-top:14px;">Последние перехваченные обращения (не попали на карты!):</div>
+    <div id="interceptLog">
+      <div class="log-item"><strong>2 ★ · Ресепшен</strong> — «Прождал 20 минут при записи на 14:00, не предупредили». <br/><em>Статус: главврач перезвонил через 12 мин, подарили профгигиену — конфликт закрыт ✓</em></div>
+    </div>
+    <a class="btn btn-navy" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">🚀 Подключить СтомаЩит для клиники за 3 дня</a>
+    <button class="btn btn-teal" onclick="switchTab('patient')">← Вернуться на экран пациента (QR)</button>
+  </div>
+
+  <div class="foot-note">СтомаЩит · защита рейтинга стоматологий · без передачи врачебной тайны (152-ФЗ)<br/>smetagolosom.ru · Вадим Евдокимов</div>
+</div>
+
+<script>
+const CATALOG = {
+  "m101": {
+    "id": "m101",
+    "code": "М1-01",
+    "clinic": "Стоматология «Эстетика»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Радищева, д. 11",
+    "phone": "+7 (4912) 95-25-25",
+    "lpr": "Гендиректор: Тюрина Светлана Александровна | Главврач: Матвеева Светлана Сергеевна",
+    "doctors": [
+      "Матвеева Светлана Сергеевна (Главврач, имплантолог)",
+      "Стоматолог-ортопед (Филиал Радищева, 11)",
+      "Стоматолог-терапевт (Лечение под микроскопом)",
+      "Администратор ресепшена (Радищева, 11)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%AD%D1%81%D1%82%D0%B5%D1%82%D0%B8%D0%BA%D0%B0%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%A0%D0%B0%D0%B4%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%2011",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%AD%D1%81%D1%82%D0%B5%D1%82%D0%B8%D0%BA%D0%B0",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%AD%D1%81%D1%82%D0%B5%D1%82%D0%B8%D0%BA%D0%B0"
+  },
+  "m102": {
+    "id": "m102",
+    "code": "М1-02",
+    "clinic": "Финская стоматология",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Дзержинского, д. 59, корп. 3",
+    "phone": "+7 (4912) 27-62-27",
+    "lpr": "Директор: Селиванова Валерия Геннадьевна | Главврач: Кузьмина Наталия Анатольевна",
+    "doctors": [
+      "Кузьмина Наталия Анатольевна (Главврач, ортодонт)",
+      "Пономарёв Евгений Олегович (Ортопед, хирург)",
+      "Герцовская Марина Владимировна (Терапевт, хирург)",
+      "Петросян О. В. (Стоматолог-терапевт)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2059",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F"
+  },
+  "m103": {
+    "id": "m103",
+    "code": "М1-03",
+    "clinic": "Стоматология «К-Денти»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Дзержинского, д. 12А",
+    "phone": "+7 (4912) 51-18-15",
+    "lpr": "Директор и совладелец: Котов Александр Сергеевич (семейная клиника)",
+    "doctors": [
+      "Котов Александр Алексеевич (Хирург, терапевт)",
+      "Котова Елена Владимировна (Стоматолог)",
+      "Косолюкина Юлия Петровна (Стоматолог-терапевт)",
+      "Администратор клиники «К-Денти»"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%9A-%D0%94%D0%B5%D0%BD%D1%82%D0%B8%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2012%D0%90",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%9A-%D0%94%D0%B5%D0%BD%D1%82%D0%B8",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%9A-%D0%94%D0%B5%D0%BD%D1%82%D0%B8"
+  },
+  "m104": {
+    "id": "m104",
+    "code": "М1-04",
+    "clinic": "Стоматология «Реал Дент»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Гагарина, д. 36",
+    "phone": "+7 (4912) 20-23-20",
+    "lpr": "Директор: Яшкин Роман Алексеевич | Главврач: Уваркина Галина Георгиевна",
+    "doctors": [
+      "Уваркина Галина Георгиевна (Главврач, пародонтолог)",
+      "Ведущий хирург-имплантолог (Osstem / MIS / Straumann)",
+      "Стоматолог-ортопед (Цирконий / Sirona)",
+      "Стоматолог-терапевт (Микроскоп Carl Zeiss)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D0%B5%D0%B0%D0%BB%20%D0%94%D0%B5%D0%BD%D1%82%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD%D0%B0%2036",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D0%B5%D0%B0%D0%BB%20%D0%94%D0%B5%D0%BD%D1%82",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D0%B5%D0%B0%D0%BB%20%D0%94%D0%B5%D0%BD%D1%82"
+  },
+  "m105": {
+    "id": "m105",
+    "code": "М1-05",
+    "clinic": "Стоматология «ВитаДент»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Гагарина, д. 60/64",
+    "phone": "+7 (4912) 96-88-62",
+    "lpr": "Директор и практикующий врач: Бескова Елена Валентиновна",
+    "doctors": [
+      "Бескова Елена Валентиновна (Директор, терапевт-хирург)",
+      "Кузин Юрий Сергеевич (Стоматолог-ортопед)",
+      "Демешова Наталья Михайловна (Терапевт)",
+      "Авидзба Светлана Анатольевна (Терапевт)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%92%D0%B8%D1%82%D0%B0%D0%94%D0%B5%D0%BD%D1%82%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD%D0%B0%2060",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%92%D0%B8%D1%82%D0%B0%D0%94%D0%B5%D0%BD%D1%82",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%92%D0%B8%D1%82%D0%B0%D0%94%D0%B5%D0%BD%D1%82"
+  },
+  "m206": {
+    "id": "m206",
+    "code": "М2-06",
+    "clinic": "Стоматология «Жемчужина»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Соборная, д. 48А",
+    "phone": "+7 (4912) 25-68-67",
+    "lpr": "Гендиректор: Тухикян Кристина Ашотовна | Главврач: Тухикян Ашот Норикович",
+    "doctors": [
+      "Тухикян Ашот Норикович (Главврач, имплантолог-ортопед)",
+      "Стоматолог-терапевт (Микроскоп / Эндодонтия)",
+      "Стоматолог-ортодонт (Прикус / Элайнеры)",
+      "Администратор центра «Жемчужина»"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%B8%D0%BD%D0%B0%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%A1%D0%BE%D0%B1%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%2048%D0%90",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%B8%D0%BD%D0%B0",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%B8%D0%BD%D0%B0"
+  },
+  "m207": {
+    "id": "m207",
+    "code": "М2-07",
+    "clinic": "Стоматология «Династия»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Кальная, д. 34",
+    "phone": "+7 (4912) 51-55-25",
+    "lpr": "Главврач: Парамошина Ольга Алексеевна | Зав. имплантацией: Грешникова Екатерина Викторовна",
+    "doctors": [
+      "Парамошина Ольга Алексеевна (Главврач, ортопед)",
+      "Грешникова Екатерина Викторовна (Зав. хирургией, имплантолог)",
+      "Арчаков Аслан Мусаевич (Хирург-имплантолог)",
+      "Засолько Дмитрий Вячеславович (Хирург-имплантолог)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%94%D0%B8%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%9A%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%2034",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%94%D0%B8%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D1%8F",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%94%D0%B8%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D1%8F"
+  },
+  "m208": {
+    "id": "m208",
+    "code": "М2-08",
+    "clinic": "РЦСИ — Центр имплантации",
+    "city": "Рязань",
+    "address": "г. Рязань, б-р Народный, д. 15, 1 этаж",
+    "phone": "+7 (4912) 46-46-36",
+    "lpr": "Основатель и гендиректор: Ушаков Андрей Анатольевич | Главврач: Иванова Светлана Владимировна",
+    "doctors": [
+      "Иванова Светлана Владимировна (Главврач, ЧЛХ, имплантолог)",
+      "Цветкова Н. Ю. (Стоматолог-ортопед)",
+      "Кашлев Д. С. (Стоматолог-ортопед)",
+      "Соколов Ю. И. (Хирург-имплантолог)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9%20%D0%B8%D0%BC%D0%BF%D0%BB%D0%B0%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8%20%D0%9D%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%2015",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A0%D0%A6%D0%A1%D0%98%20%E2%80%94%20%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%B8%D0%BC%D0%BF%D0%BB%D0%B0%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A0%D0%A6%D0%A1%D0%98%20%E2%80%94%20%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%B8%D0%BC%D0%BF%D0%BB%D0%B0%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8"
+  },
+  "m209": {
+    "id": "m209",
+    "code": "М2-09",
+    "clinic": "Стоматология «Голливуд»",
+    "city": "Рязань",
+    "address": "г. Рязань, Московское шоссе, д. 20 (БЦ «Престиж», 4 эт., оф. 405/1)",
+    "phone": "+7 (4912) 34-70-73",
+    "lpr": "Гендиректор: Воронкова Елена Аркадьевна | Совладелец: Воронков Роман Евгеньевич",
+    "doctors": [
+      "Ведущий стоматолог-терапевт («Голливуд»)",
+      "Стоматолог-ортопед (Протезирование)",
+      "Стоматолог-ортодонт (Брекеты)",
+      "Администратор клиники «Голливуд»"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%93%D0%BE%D0%BB%D0%BB%D0%B8%D0%B2%D1%83%D0%B4%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2020",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%93%D0%BE%D0%BB%D0%BB%D0%B8%D0%B2%D1%83%D0%B4",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%93%D0%BE%D0%BB%D0%BB%D0%B8%D0%B2%D1%83%D0%B4"
+  },
+  "m210": {
+    "id": "m210",
+    "code": "М2-10",
+    "clinic": "Стоматология «32 Здоровых»",
+    "city": "Рязань",
+    "address": "г. Рязань, Первомайский проспект, д. 76, корп. 3",
+    "phone": "+7 (953) 745-96-37",
+    "lpr": "Ведущие врачи / руководство: Котов Константин Сергеевич (ортопед), Котова Анастасия Борисовна (терапевт)",
+    "doctors": [
+      "Котов Константин Сергеевич (Стоматолог-ортопед)",
+      "Котова Анастасия Борисовна (Стоматолог-терапевт)",
+      "Стоматолог-хирург («32 Здоровых»)",
+      "Администратор клиники «32 Здоровых»"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%2032%20%D0%97%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2076",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%2032%20%D0%97%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%2032%20%D0%97%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85"
+  },
+  "m301": {
+    "id": "m301",
+    "code": "Резерв-1",
+    "clinic": "Стоматология «Улыбка»",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Новосёлов, д. 40А",
+    "phone": "+7 (4912) 50-25-00",
+    "lpr": "Руководство клиники «Улыбка»",
+    "doctors": [
+      "Степнова Таисия Дмитриевна (Стоматолог-терапевт)",
+      "Стоматолог-ортопед («Улыбка»)",
+      "Стоматолог-хирург («Улыбка»)",
+      "Администратор ресепшена («Улыбка»)"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A3%D0%BB%D1%8B%D0%B1%D0%BA%D0%B0%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D0%B5%D0%BB%D0%BE%D0%B2%2040%D0%90",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A3%D0%BB%D1%8B%D0%B1%D0%BA%D0%B0",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%A1%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A3%D0%BB%D1%8B%D0%B1%D0%BA%D0%B0"
+  },
+  "m302": {
+    "id": "m302",
+    "code": "Резерв-2",
+    "clinic": "Доступная стоматология",
+    "city": "Рязань",
+    "address": "г. Рязань, ул. Высоковольтная, д. 40",
+    "phone": "+7 (4912) 40-70-43",
+    "lpr": "Руководство сети «Доступная стоматология»",
+    "doctors": [
+      "Ведущий стоматолог-терапевт",
+      "Стоматолог-хирург (Удаление / имплантация)",
+      "Стоматолог-ортопед (Протезирование)",
+      "Администратор ресепшена"
+    ],
+    "yandex": "https://yandex.ru/maps/11/ryazan/?text=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%BE%D0%B2%D0%BE%D0%BB%D1%8C%D1%82%D0%BD%D0%B0%D1%8F%2040",
+    "prodoctorov": "https://prodoctorov.ru/ryazan/find/?q=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F",
+    "twogis": "https://2gis.ru/ryazan/search/%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F"
+  }
+};
+const DEFAULT_ID = 'm104';
+const POS_TAGS = ['Абсолютно без боли', 'Внимательный врач', 'Понятный план лечения', 'Чисто и современно', 'Вежливый ресепшен', 'Приняли точно вовремя'];
+const NEG_TAGS = ['Долгое ожидание', 'Тон администратора', 'Вопросы по цене', 'Непонятный план лечения', 'Дискомфорт на приёме'];
+const HINTS = ['', '1 ★ — Очень плохо (сообщим лично главврачу)', '2 ★ — Были проблемы (разберёмся лично)', '3 ★ — Есть замечания (передадим руководству)', '4 ★ — Хорошо! Поделитесь впечатлением', '5 ★ — Отлично! Спасибо за доверие'];
+
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let CURRENT = null;
+let curStars = 0;
+let selPos = new Set(['Абсолютно без боли', 'Внимательный врач']);
+let selNeg = new Set();
+
+const docSel = document.getElementById('docSelect');
+const clinicSwitcher = document.getElementById('clinicSwitcher');
+
+function initSwitcher() {
+  clinicSwitcher.innerHTML = Object.values(CATALOG).map(item =>
+    `<option value="${escHtml(item.id)}">${escHtml(item.code)} · ${escHtml(item.clinic)}</option>`
+  ).join('');
+  clinicSwitcher.addEventListener('change', () => {
+    const next = CATALOG[clinicSwitcher.value];
+    if (next) {
+      applyClinic(next);
+      history.replaceState(null, '', '?c=' + encodeURIComponent(next.id));
+    }
+  });
+}
+
+function applyClinic(data) {
+  CURRENT = data;
+  document.title = 'СтомаЩит — ' + data.clinic;
+  document.getElementById('clinicTitle').textContent = data.clinic;
+  document.getElementById('clinicAddr').textContent = data.address ? (data.address + (data.phone ? ' · ' + data.phone : '')) : (data.city || '');
+  document.getElementById('ownerClinicTitle').textContent = data.clinic + (data.city ? ' · ' + data.city : '');
+  document.getElementById('ownerLprLine').textContent = data.lpr ? data.lpr : 'Данные за последние 30 дней · мгновенные алерты в Telegram/VK';
+  document.getElementById('linkYandex').href = data.yandex;
+  document.getElementById('linkProdoc').href = data.prodoctorov;
+  document.getElementById('link2gis').href = data.twogis;
+  if (data.id && CATALOG[data.id]) clinicSwitcher.value = data.id;
+
+  const docs = data.doctors || [];
+  docSel.innerHTML = '<option value="">— Выберите врача или пропустите —</option>' +
+    docs.map(d => `<option value="${escHtml(d)}">${escHtml(d)}</option>`).join('');
+
+  const demoScores = [
+    ['4.97 ★ (38)', 'score-hi'],
+    ['4.93 ★ (29)', 'score-hi'],
+    ['4.88 ★ (21)', 'score-hi'],
+    ['4.18 ★ (6 жалоб)', 'score-warn'],
+  ];
+  document.getElementById('ownerDocsList').innerHTML = docs.map((d, i) => {
+    const pair = demoScores[i] || ['4.91 ★ (17)', 'score-hi'];
+    return `<div class="doc-row"><span>${escHtml(d)}</span><span class="doc-score ${pair[1]}">${pair[0]}</span></div>`;
+  }).join('');
+
+  resetDemo();
+}
+
+function renderChips() {
+  document.getElementById('posChips').innerHTML = POS_TAGS.map(t =>
+    `<button type="button" class="chip ${selPos.has(t)?'on':''}" onclick="togglePos('${t}')">${t}</button>`
+  ).join('');
+  document.getElementById('negChips').innerHTML = NEG_TAGS.map(t =>
+    `<button type="button" class="chip neg ${selNeg.has(t)?'on':''}" onclick="toggleNeg('${t}')">${t}</button>`
+  ).join('');
+  updateDraft();
+}
+
+function togglePos(t) { selPos.has(t) ? selPos.delete(t) : selPos.add(t); renderChips(); }
+function toggleNeg(t) { selNeg.has(t) ? selNeg.delete(t) : selNeg.add(t); renderChips(); }
+
+function updateDraft() {
+  if (!CURRENT) return;
+  const doc = docSel.value ? (' у специалиста ' + docSel.value.split(' (')[0]) : '';
+  const tags = Array.from(selPos);
+  const details = tags.length ? tags.map(x => x.toLowerCase()).join(', ') : 'очень комфортная атмосфера и аккуратная работа';
+  document.getElementById('reviewDraft').textContent =
+    `Был(а) на приёме в ${CURRENT.clinic}${doc}. Очень доволен(льна) визитом: ${details}. Всё подробно объяснили до начала лечения, рекомендую клинику!`;
+}
+docSel.addEventListener('change', updateDraft);
+
+function pickStar(n) {
+  curStars = n;
+  document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('lit', i < n));
+  document.getElementById('starHint').textContent = HINTS[n];
+  document.getElementById('secInterceptDone').classList.remove('show');
+  if (n >= 4) {
+    document.getElementById('secPositive').classList.add('show');
+    document.getElementById('secNegative').classList.remove('show');
+    updateDraft();
+  } else {
+    document.getElementById('secNegative').classList.add('show');
+    document.getElementById('secPositive').classList.remove('show');
+  }
+}
+
+function copyReview() {
+  const txt = document.getElementById('reviewDraft').textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = '✅ Текст скопирован — выберите площадку ниже!';
+  const k = document.getElementById('kpiPos');
+  k.textContent = String(parseInt(k.textContent, 10) + 1);
+  setTimeout(() => btn.textContent = '📋 Скопировать готовый отзыв', 2600);
+}
+
+function sendIntercept() {
+  const doc = docSel.value || 'Не указан';
+  const tags = Array.from(selNeg).join(', ') || 'Общее замечание';
+  const msg = (document.getElementById('negText').value || 'Пациент поставил низкую оценку — требуется звонок').trim();
+  const phone = (document.getElementById('negPhone').value || 'не указан').trim();
+
+  document.getElementById('secNegative').classList.remove('show');
+  document.getElementById('secInterceptDone').classList.add('show');
+  document.getElementById('demoAlertPreview').innerHTML =
+    `<strong>🚨 ПЕРЕХВАТ НЕГАТИВА (${curStars} ★) — ${escHtml(CURRENT.clinic)}</strong><br/>` +
+    `• Специалист: ${escHtml(doc)}<br/>• Причина: ${escHtml(tags)}<br/>• Комментарий: «${escHtml(msg)}»<br/>• Тел. пациента: <strong>${escHtml(phone)}</strong><br/>` +
+    `<span style="color:#86efac;">✓ Отзыв НЕ попал на ПроДокторов / Яндекс Карты / 2ГИС!</span>`;
+
+  const shareText = `🚨 СТОМАЩИТ · Перехват негатива (${curStars}★)\nКлиника: ${CURRENT.clinic}\nСпециалист: ${doc}\nПричина: ${tags}\nКомментарий: ${msg}\nТел. пациента: ${phone}\n(Отзыв НЕ опубликован на картах — можно перезвонить сейчас!)`;
+  document.getElementById('tgShareBtn').href =
+    'https://t.me/share/url?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(shareText);
+
+  const k = document.getElementById('kpiNeg');
+  k.textContent = String(parseInt(k.textContent, 10) + 1);
+  const log = document.getElementById('interceptLog');
+  log.insertAdjacentHTML('afterbegin',
+    `<div class="log-item"><strong>${curStars} ★ · ${escHtml(doc)} (${escHtml(tags)})</strong> — «${escHtml(msg)}» · Тел: ${escHtml(phone)}<br/><em>Только что перехвачено — ожидает звонка главврача</em></div>`
+  );
+}
+
+function resetDemo() {
+  curStars = 0; selNeg.clear();
+  document.getElementById('negText').value = '';
+  document.getElementById('negPhone').value = '';
+  document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('lit'));
+  document.getElementById('starHint').textContent = 'Нажмите на звёздочку от 1 до 5';
+  document.getElementById('secPositive').classList.remove('show');
+  document.getElementById('secNegative').classList.remove('show');
+  document.getElementById('secInterceptDone').classList.remove('show');
+  renderChips();
+}
+
+function switchTab(tab) {
+  document.getElementById('tabPatient').classList.toggle('active', tab === 'patient');
+  document.getElementById('tabOwner').classList.toggle('active', tab === 'owner');
+  document.getElementById('viewPatient').style.display = tab === 'patient' ? 'block' : 'none';
+  document.getElementById('viewOwner').style.display = tab === 'owner' ? 'block' : 'none';
+}
+
+// Boot from ?c=m104 / ?stoma=m104 / ?clinic=...
+initSwitcher();
+const qs = new URLSearchParams(location.search);
+const codeKey = (qs.get('c') || qs.get('stoma') || '').toLowerCase().trim();
+const baseItem = CATALOG[codeKey] || CATALOG[DEFAULT_ID];
+const bootData = {
+  ...baseItem,
+  clinic: qs.get('clinic') || baseItem.clinic,
+  city: qs.get('city') || baseItem.city,
+  address: qs.get('clinic') ? (qs.get('addr') || '') : baseItem.address,
+  phone: qs.get('clinic') ? (qs.get('phone') || '') : baseItem.phone,
+  yandex: qs.get('yandex') || baseItem.yandex,
+  prodoctorov: qs.get('prodoctorov') || baseItem.prodoctorov,
+  twogis: qs.get('2gis') || baseItem.twogis,
+};
+applyClinic(bootData);
+</script>
+</body>
+</html>
