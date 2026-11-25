@@ -407,6 +407,47 @@ button, input, select, textarea {
   font-size: 0.9375rem;
 }
 
+/* Price estimator */
+.estimator-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.estimator-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.estimator-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.estimator-price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0 0 12px;
+  white-space: nowrap;
+}
+
+.estimator-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 /* Prices */
 .price-tabs {
   display: flex;
@@ -431,7 +472,8 @@ button, input, select, textarea {
   border-color: var(--border-strong);
 }
 
-.tab-btn[aria-selected="true"] {
+.tab-btn[aria-selected="true"],
+.tab-btn[aria-pressed="true"] {
   background: var(--accent);
   color: var(--accent-contrast);
   border-color: var(--accent);
@@ -547,6 +589,14 @@ button, input, select, textarea {
   color: var(--text-muted);
 }
 
+.doctor-book-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}
+
 /* Booking & Contacts */
 .contact-grid {
   display: grid;
@@ -580,6 +630,75 @@ button, input, select, textarea {
   color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.hours-state {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.booking-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.booking-panel[hidden] {
+  display: none;
+}
+
+.bot-dialog {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bot-msg {
+  max-width: 92%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.bot-msg-in {
+  align-self: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.bot-msg-out {
+  align-self: flex-end;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.bot-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bot-note {
+  margin: 12px 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
 }
 
 .booking-form {
@@ -844,9 +963,14 @@ dialog.legal-dialog::backdrop {
   }
 
   .hero-grid,
-  .contact-grid {
+  .contact-grid,
+  .estimator-card {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
+  }
+
+  .estimator-aside {
+    align-items: flex-start;
   }
 
   .doctors-grid {

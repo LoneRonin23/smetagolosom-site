@@ -157,6 +157,35 @@
       </div>
     </section>
 
+    <section class="section" id="estimator">
+      <div class="container">
+        <h2 class="section-heading">Ориентир по стоимости</h2>
+        <div class="estimator-chips" role="group" aria-label="Выбор повода обращения">
+          <button class="tab-btn" type="button" data-estimate="pain" aria-pressed="true">Болит зуб</button>
+          <button class="tab-btn" type="button" data-estimate="filling" aria-pressed="false">Выпала пломба</button>
+          <button class="tab-btn" type="button" data-estimate="implant" aria-pressed="false">Нет зуба</button>
+          <button class="tab-btn" type="button" data-estimate="braces" aria-pressed="false">Исправить прикус</button>
+          <button class="tab-btn" type="button" data-estimate="kids" aria-pressed="false">Приём для ребёнка</button>
+          <button class="tab-btn" type="button" data-estimate="hygiene" aria-pressed="false">Гигиена и отбеливание</button>
+        </div>
+
+        <div class="card estimator-card">
+          <div>
+            <h3 class="card-title" id="estTitle">Диагностика и лечение кариеса или пульпита</h3>
+            <p class="card-text" id="estDesc">Врач осмотрит зуб, сделает прицельный снимок на радиовизиографе и назовёт точную сумму до начала лечения.</p>
+            <ul class="estimator-meta">
+              <li id="estStep">Первый шаг: бесплатная консультация терапевта</li>
+              <li id="estDoctor">Рекомендуем: Герцовская М. В. или Петросян О. В.</li>
+            </ul>
+          </div>
+          <div class="estimator-aside">
+            <p class="estimator-price" id="estPrice">от 4 200 ₽</p>
+            <button class="btn btn-primary" type="button" id="estBookBtn">Записаться на этот приём</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="prices">
       <div class="container">
         <h2 class="section-heading">Стоимость основных услуг</h2>
@@ -295,6 +324,7 @@
               </div>
             </div>
             <p class="doctor-meta">Высшая квалификационная категория, стаж более 30 лет. Окончила МГМСИ в 1984 году, член СТАР Рязанской области и ПОО России.</p>
+            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Кузьмина Наталия Анатольевна" data-book-reason="Ортодонтия">Записаться к врачу</button>
           </article>
 
           <article class="card doctor-card">
@@ -306,6 +336,7 @@
               </div>
             </div>
             <p class="doctor-meta">Опыт работы более 30 лет. Окончила стоматологический факультет Минского государственного медицинского института в 1986 году.</p>
+            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Герцовская Марина Владимировна" data-book-reason="Лечение зуба или гигиена">Записаться к врачу</button>
           </article>
 
           <article class="card doctor-card">
@@ -317,6 +348,7 @@
               </div>
             </div>
             <p class="doctor-meta">Опыт работы более 20 лет. Окончила Хабаровский государственный медицинский институт в 1994 году, повышала квалификацию в Санкт-Петербурге.</p>
+            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Петросян Оксана Викторовна" data-book-reason="Лечение зуба или гигиена">Записаться к врачу</button>
           </article>
 
           <article class="card doctor-card">
@@ -328,6 +360,7 @@
               </div>
             </div>
             <p class="doctor-meta">Окончил РязГМУ в 2013 году. Специализируется на протезировании на имплантах и лазерной хирургии, автор научных статей и патентов.</p>
+            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Пономарёв Евгений Олегович" data-book-reason="Имплантация и протезирование">Записаться к врачу</button>
           </article>
 
           <article class="card doctor-card">
@@ -339,6 +372,7 @@
               </div>
             </div>
             <p class="doctor-meta">Опыт работы более 30 лет. Окончила Рязанский медицинский колледж в 1994 году по специальности стоматология.</p>
+            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Захарова Татьяна Николаевна" data-book-reason="Консультация терапевта">Записаться к врачу</button>
           </article>
         </div>
       </div>
@@ -356,6 +390,7 @@
             <li>
               <span class="contact-label">Режим работы</span>
               <span class="contact-value">Понедельник–пятница 9:00–20:00, суббота 9:00–15:00</span>
+              <span class="hours-state" id="clinicHoursState"></span>
             </li>
             <li>
               <span class="contact-label">Телефоны для записи</span>
@@ -370,45 +405,73 @@
             </li>
           </ul>
 
-          <a class="btn btn-secondary" href="https://yandex.ru/maps/11/ryazan/?text=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2059" target="_blank" rel="noopener noreferrer">
-            Открыть на Яндекс.Картах ↗
-          </a>
+          <div class="contact-actions">
+            <a class="btn btn-secondary" href="https://yandex.ru/maps/11/ryazan/?text=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2059" target="_blank" rel="noopener noreferrer">
+              Открыть на Яндекс.Картах ↗
+            </a>
+            <button class="btn btn-secondary" type="button" data-open-dialog="taxDialog">Справка на налоговый вычет 13%</button>
+          </div>
         </div>
 
         <div class="card" id="booking">
           <h2 class="section-heading">Запись на приём</h2>
-          <form class="booking-form" id="bookingForm" method="post">
-            <div class="field-group">
-              <label class="field-label" for="patientName">Ваше имя</label>
-              <input class="field-input" id="patientName" name="name" type="text" autocomplete="name" required>
-            </div>
+          <div class="booking-tabs" role="tablist" aria-label="Способ записи">
+            <button class="tab-btn" type="button" role="tab" aria-selected="true" data-booking-tab="form">Форма на сайте</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-booking-tab="bot">Бот записи 24/7</button>
+          </div>
 
-            <div class="field-group">
-              <label class="field-label" for="patientPhone">Телефон для связи</label>
-              <input class="field-input" id="patientPhone" name="tel" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
-            </div>
+          <div class="booking-panel" role="tabpanel" data-booking-panel="form">
+            <form class="booking-form" id="bookingForm" method="post">
+              <div class="field-group">
+                <label class="field-label" for="patientName">Ваше имя</label>
+                <input class="field-input" id="patientName" name="name" type="text" autocomplete="name" required>
+              </div>
 
-            <div class="field-group">
-              <label class="field-label" for="patientReason">Повод обращения</label>
-              <select class="field-input" id="patientReason" name="reason">
-                <option value="Консультация терапевта">Бесплатная консультация стоматолога-терапевта</option>
-                <option value="Лечение зуба или гигиена">Лечение зуба или гигиена</option>
-                <option value="Имплантация и протезирование">Имплантация или протезирование</option>
-                <option value="Ортодонтия">Консультация ортодонта</option>
-                <option value="Детский приём">Детский приём</option>
-              </select>
-            </div>
+              <div class="field-group">
+                <label class="field-label" for="patientPhone">Телефон для связи</label>
+                <input class="field-input" id="patientPhone" name="tel" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+              </div>
 
-            <label class="consent-row" for="consentCheck">
-              <input id="consentCheck" type="checkbox" required>
-              <span>
-                Я даю <button class="inline-link-btn" type="button" data-open-dialog="consentDialog">согласие на обработку персональных данных</button> и ознакомлен с <button class="inline-link-btn" type="button" data-open-dialog="privacyDialog">Политикой обработки ПДн</button>.
-              </span>
-            </label>
+              <div class="field-group">
+                <label class="field-label" for="patientReason">Повод обращения</label>
+                <select class="field-input" id="patientReason" name="reason">
+                  <option value="Консультация терапевта">Бесплатная консультация стоматолога-терапевта</option>
+                  <option value="Лечение зуба или гигиена">Лечение зуба или гигиена</option>
+                  <option value="Имплантация и протезирование">Имплантация или протезирование</option>
+                  <option value="Ортодонтия">Консультация ортодонта</option>
+                  <option value="Детский приём">Детский приём</option>
+                </select>
+              </div>
 
-            <button class="btn btn-primary" type="submit">Отправить заявку на приём</button>
-            <p class="form-status" id="formStatus" role="status" hidden></p>
-          </form>
+              <div class="field-group">
+                <label class="field-label" for="patientDoctor">Специалист</label>
+                <select class="field-input" id="patientDoctor" name="doctor">
+                  <option value="Любой свободный врач">Любой свободный врач</option>
+                  <option value="Кузьмина Наталия Анатольевна">Кузьмина Наталия Анатольевна (ортодонт)</option>
+                  <option value="Герцовская Марина Владимировна">Герцовская Марина Владимировна (терапевт, хирург)</option>
+                  <option value="Петросян Оксана Викторовна">Петросян Оксана Викторовна (терапевт, ортопед)</option>
+                  <option value="Пономарёв Евгений Олегович">Пономарёв Евгений Олегович (ортопед, хирург)</option>
+                  <option value="Захарова Татьяна Николаевна">Захарова Татьяна Николаевна (зубной врач)</option>
+                </select>
+              </div>
+
+              <label class="consent-row" for="consentCheck">
+                <input id="consentCheck" type="checkbox" required>
+                <span>
+                  Я даю <button class="inline-link-btn" type="button" data-open-dialog="consentDialog">согласие на обработку персональных данных</button> и ознакомлен с <button class="inline-link-btn" type="button" data-open-dialog="privacyDialog">Политикой обработки ПДн</button>.
+                </span>
+              </label>
+
+              <button class="btn btn-primary" type="submit">Отправить заявку на приём</button>
+              <p class="form-status" id="formStatus" role="status" hidden></p>
+            </form>
+          </div>
+
+          <div class="booking-panel" role="tabpanel" data-booking-panel="bot" hidden>
+            <div class="bot-dialog" id="botDialog" aria-live="polite"></div>
+            <div id="botControls"></div>
+            <p class="bot-note">Бот принимает записи круглосуточно в ВКонтакте, Telegram и MAX, проверяет согласие по 152-ФЗ, сам напоминает пациенту о визите за 24 часа и передаёт карточку администратору.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -489,6 +552,37 @@
     </div>
     <p>Юридический и фактический адрес: 390005, г. Рязань, ул. Дзержинского, д. 59, корп. 3.</p>
     <p>ИНН 6234058134, КПП 623401001, ОГРН 1086234009377. Исполнительный директор Селиванова Валерия Геннадьевна. Главный врач Кузьмина Наталия Анатольевна.</p>
+  </dialog>
+
+  <dialog class="legal-dialog" id="taxDialog" aria-labelledby="taxTitle">
+    <div class="dialog-head">
+      <h2 class="dialog-title" id="taxTitle">Справка для налогового вычета 13%</h2>
+      <button class="brand-close" type="button" data-close-dialog aria-label="Закрыть окно">×</button>
+    </div>
+    <form class="booking-form" id="taxForm" method="post">
+      <div class="field-group">
+        <label class="field-label" for="taxPatientName">ФИО налогоплательщика</label>
+        <input class="field-input" id="taxPatientName" name="tax_name" type="text" required>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="taxPhone">Телефон для уведомления о готовности</label>
+        <input class="field-input" id="taxPhone" name="tax_phone" type="tel" placeholder="+7 (900) 000-00-00" required>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="taxYear">Год оплаты лечения</label>
+        <select class="field-input" id="taxYear" name="tax_year">
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+      <label class="consent-row" for="taxConsentCheck">
+        <input id="taxConsentCheck" type="checkbox" required>
+        <span>Я даю согласие ООО «Гиппократ» на обработку данных для подготовки справки по форме ФНС.</span>
+      </label>
+      <button class="btn btn-primary" type="submit">Запросить справку</button>
+      <p class="form-status" id="taxStatus" role="status" hidden></p>
+    </form>
   </dialog>
 
   <script src="./app.js" defer></script>
