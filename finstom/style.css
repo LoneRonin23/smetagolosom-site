@@ -1,5 +1,9 @@
 :root {
   --bg: #FAF8F4;
+  --bg-stone: #F3EFE7;
+  --bg-sage: #EAEEE8;
+  --bg-pine: #18352D;
+  --bg-footer: #14241F;
   --surface: #FFFFFF;
   --surface-muted: #F2EFE9;
   --text: #18221E;
@@ -22,6 +26,10 @@
 
 html.a11y-large {
   --bg: #FFFFFF;
+  --bg-stone: #FFFFFF;
+  --bg-sage: #FFFFFF;
+  --bg-pine: #FFFFFF;
+  --bg-footer: #FFFFFF;
   --surface: #FFFFFF;
   --surface-muted: #F0F0F0;
   --text: #000000;
@@ -110,8 +118,14 @@ button, input, select, textarea {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: var(--bg);
+  background-color: rgba(250, 248, 244, 0.94);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
+}
+
+html.a11y-large .site-header {
+  background-color: #FFFFFF;
+  backdrop-filter: none;
 }
 
 .header-row {
@@ -301,8 +315,21 @@ section[id],
 
 /* Hero */
 .hero {
+  position: relative;
   padding-top: 64px;
   padding-bottom: 104px;
+  background-color: var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='760' viewBox='0 0 1440 760' fill='none'%3E%3Cpath d='M920 -40 C920 260 1120 460 1480 460' stroke='%231E4D40' stroke-opacity='0.08' stroke-width='1.2'/%3E%3Cpath d='M840 -40 C840 320 1070 550 1480 550' stroke='%231E4D40' stroke-opacity='0.05' stroke-width='1'/%3E%3Ccircle cx='120' cy='680' r='260' stroke='%2318221E' stroke-opacity='0.045' stroke-width='1'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #F4EFE6 0%, #FAF8F4 62%, #FAF8F4 100%);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
+html.a11y-large .hero {
+  background-image: none;
+  background-color: #FFFFFF;
 }
 
 .hero-grid {
@@ -384,6 +411,22 @@ section[id],
 }
 
 /* Directions / Services */
+#services {
+  background-color: var(--surface);
+  background-image: radial-gradient(rgba(24, 34, 30, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+#services .card {
+  background-color: #FAF8F4;
+}
+
+html.a11y-large #services,
+html.a11y-large #services .card {
+  background-image: none;
+  background-color: #FFFFFF;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -412,7 +455,62 @@ section[id],
   font-size: 0.9375rem;
 }
 
-/* Price estimator */
+/* Price estimator — deep Nordic pine contrast section */
+#estimator {
+  background-color: var(--bg-pine);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='500' viewBox='0 0 1200 500' fill='none'%3E%3Cpath d='M-60 440 C260 440 420 260 420 -40' stroke='%23FAF8F4' stroke-opacity='0.07' stroke-width='1.2'/%3E%3Cpath d='M820 520 C820 220 980 40 1260 40' stroke='%23FAF8F4' stroke-opacity='0.07' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #FAF8F4;
+  border-top: none;
+}
+
+#estimator .section-heading {
+  color: #FAF8F4;
+}
+
+#estimator .tab-btn {
+  background: rgba(250, 248, 244, 0.08);
+  border-color: rgba(250, 248, 244, 0.24);
+  color: #FAF8F4;
+}
+
+#estimator .tab-btn:hover {
+  background: rgba(250, 248, 244, 0.16);
+  border-color: rgba(250, 248, 244, 0.45);
+}
+
+#estimator .tab-btn[aria-pressed="true"] {
+  background: #FAF8F4;
+  color: #18352D;
+  border-color: #FAF8F4;
+}
+
+#estimator .card {
+  background-color: #FAF8F4;
+  color: var(--text);
+  border-color: rgba(250, 248, 244, 0.2);
+}
+
+html.a11y-large #estimator {
+  background-image: none;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-top: 1px solid #000000;
+}
+
+html.a11y-large #estimator .section-heading,
+html.a11y-large #estimator .tab-btn {
+  color: #000000;
+  background: #FFFFFF;
+  border-color: #000000;
+}
+
+html.a11y-large #estimator .tab-btn[aria-pressed="true"] {
+  background: #000000;
+  color: #FFFFFF;
+}
+
 .estimator-chips {
   display: flex;
   flex-wrap: wrap;
@@ -454,6 +552,30 @@ section[id],
 }
 
 /* Prices */
+#prices {
+  background-color: var(--bg-stone);
+}
+
+/* Doctors */
+#doctors {
+  background-color: var(--bg);
+}
+
+/* Contacts — calm Nordic sage-stone matching clinic lounge sofa */
+#contacts {
+  background-color: var(--bg-sage);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='700' viewBox='0 0 1200 700' fill='none'%3E%3Ccircle cx='110' cy='610' r='310' stroke='%231E4D40' stroke-opacity='0.06' stroke-width='1.2'/%3E%3Ccircle cx='110' cy='610' r='220' stroke='%231E4D40' stroke-opacity='0.045' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+html.a11y-large #prices,
+html.a11y-large #doctors,
+html.a11y-large #contacts {
+  background-image: none;
+  background-color: #FFFFFF;
+}
+
 .price-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -775,11 +897,41 @@ section[id],
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid var(--border);
+  background-color: var(--bg-footer);
+  border-top: 1px solid rgba(250, 248, 244, 0.12);
   padding-top: 40px;
   padding-bottom: 48px;
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: rgba(250, 248, 244, 0.78);
+}
+
+.site-footer strong {
+  color: #FAF8F4;
+}
+
+.site-footer .inline-link-btn,
+.site-footer .contact-link {
+  color: #DCE8E2;
+}
+
+.site-footer .footer-legal {
+  border-top-color: rgba(250, 248, 244, 0.14);
+}
+
+html.a11y-large .site-footer {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-top-color: #000000;
+}
+
+html.a11y-large .site-footer strong,
+html.a11y-large .site-footer .inline-link-btn,
+html.a11y-large .site-footer .contact-link {
+  color: #000000;
+}
+
+html.a11y-large .site-footer .footer-legal {
+  border-top-color: #000000;
 }
 
 .footer-top {
