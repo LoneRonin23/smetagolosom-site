@@ -276,6 +276,11 @@ button, input, select, textarea {
 }
 
 /* Sections */
+section[id],
+#booking {
+  scroll-margin-top: 92px;
+}
+
 .section {
   padding-top: 64px;
   padding-bottom: 64px;
