@@ -175,6 +175,7 @@
       <textarea id="negText" rows="3" placeholder="Например: пришлось ждать 20 минут / не объяснили итоговую цену..."></textarea>
       <label class="field-lbl" for="negPhone">Телефон для связи с главврачом (по желанию):</label>
       <input id="negPhone" type="tel" placeholder="+7 (900) 000-00-00" />
+      <p style="font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.4;">Отправляя обращение или указывая телефон, вы принимаете <a href="/privacy.html" style="color:var(--teal-dark);text-decoration:underline;">Политику обработки персональных данных</a>.</p>
       <button class="btn btn-danger" onclick="sendIntercept()">🔒 Отправить лично главному врачу</button>
     </div>
 
@@ -218,10 +219,19 @@
       <div class="log-item"><strong>2 ★ · Ресепшен</strong> — «Прождал 20 минут при записи на 14:00, не предупредили». <br/><em>Статус: главврач перезвонил через 12 мин, подарили профгигиену — конфликт закрыт ✓</em></div>
     </div>
     <a class="btn btn-navy" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener">🚀 Подключить СтомаЩит для клиники за 3 дня</a>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4;">Переходя в мессенджер, вы принимаете <a href="/privacy.html" style="color:var(--teal-dark);text-decoration:underline;">Политику обработки персональных данных</a></p>
     <button class="btn btn-teal" onclick="switchTab('patient')">← Вернуться на экран пациента (QR)</button>
   </div>
 
-  <div class="foot-note">СтомаЩит · защита рейтинга стоматологий · без передачи врачебной тайны (152-ФЗ)<br/>smetagolosom.ru · Вадим Евдокимов</div>
+  <footer class="foot-note" style="padding:12px 6px 0;line-height:1.55;">
+    <div>СтомаЩит · <a href="https://smetagolosom.ru/" style="color:#64748b;">smetagolosom.ru</a></div>
+    <div>Самозанятый (плательщик НПД) Евдокимов Вадим · ИНН 560915812401 · <a href="tel:+79277725245" style="color:#64748b;">+7 (927) 772-52-45</a> · г. Рязань, адрес для корреспонденции — по запросу на lone.ronin@vk.com · <a href="mailto:lone.ronin@vk.com" style="color:#64748b;">lone.ronin@vk.com</a></div>
+    <div style="margin-top:4px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;">
+      <a href="/offer.html" style="color:#64748b;">Публичная оферта</a>
+      <a href="/privacy.html" style="color:#64748b;">Политика конфиденциальности</a>
+      <a href="/offer.html#refund" style="color:#64748b;">Оплата и возврат</a>
+    </div>
+  </footer>
 </div>
 
 <script>
