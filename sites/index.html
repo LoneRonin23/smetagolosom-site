@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Доработка сайтов, 152-ФЗ и разработка под ключ | СметаГолосом</title>
+  <meta name="description" content="Технический аудит сайтов, устранение нарушений 152-ФЗ, мобильная адаптация, разработка новых сайтов и ботов записи. Оплата по ссылке ЮKassa или по счёту с чеком ФНС.">
+  <link rel="canonical" href="https://smetagolosom.ru/sites/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Доработка сайтов, 152-ФЗ и разработка под ключ">
+  <meta property="og:description" content="Техфикс по 152-ФЗ от 14 000 ₽, апгрейд сайтов, редизайн под ключ, боты записи и ежемесячное сопровождение. Официальный договор и чек ФНС.">
+  <meta property="og:url" content="https://smetagolosom.ru/sites/">
+  <meta property="og:image" content="https://smetagolosom.ru/og-preview.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Доработка сайтов, 152-ФЗ и разработка под ключ">
+  <meta name="twitter:description" content="Техфикс по 152-ФЗ от 14 000 ₽, апгрейд, новый сайт под ключ и бот записи для сайта и ВКонтакте.">
+  <meta name="twitter:image" content="https://smetagolosom.ru/og-preview.jpg">
+
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #FAF8F4;
+      --bg-stone: #F3EFE7;
+      --bg-dark: #14241F;
+      --surface: #FFFFFF;
+      --text: #18221E;
+      --text-muted: #52605B;
+      --accent: #1E4D40;
+      --accent-hover: #163A30;
+      --border: rgba(24, 34, 30, 0.12);
+      --border-strong: rgba(24, 34, 30, 0.24);
+      --shadow: 0 1px 2px rgba(24, 34, 30, 0.05);
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; overflow-x: clip; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 248, 244, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-row {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 150ms ease-out, border-color 150ms ease-out;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-secondary {
+      background: var(--surface);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { border-color: var(--border-strong); }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--border);
+    }
+
+    .hero {
+      padding: 56px 0 64px;
+      background-image: linear-gradient(180deg, #F4EFE6 0%, #FAF8F4 70%);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 3.6vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin: 0 0 20px;
+      max-width: 780px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0 0 24px;
+    }
+
+    .lead {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 0 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pricing-section {
+      background: var(--bg-stone);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin: 0;
+    }
+
+    .price {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .card-meta {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.9375rem;
+      color: var(--text);
+    }
+
+    .card-list li + li { margin-top: 6px; }
+
+    .card-cta {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .text-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .site-footer {
+      background: var(--bg-dark);
+      color: rgba(250, 248, 244, 0.8);
+      padding: 36px 0 44px;
+      font-size: 0.875rem;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+
+    .footer-links a { color: #DCE8E2; }
+
+    @media (max-width: 780px) {
+      .nav-links { display: none; }
+      .pricing-grid, .info-grid { grid-template-columns: 1fr; }
+      .card-top { flex-direction: column; gap: 4px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "СметаГолосом: доработка сайтов и 152-ФЗ",
+    "url": "https://smetagolosom.ru/sites/",
+    "telephone": "+7 (927) 772-52-45",
+    "email": "lone.ronin@vk.com",
+    "areaServed": "RU"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="/">СметаГолосом · Сайты и 152-ФЗ</a>
+      <nav class="nav-links" aria-label="Разделы страницы">
+        <a href="#pricing">Прайс-лист</a>
+        <a href="#payment">Оплата и чеки</a>
+        <a href="/finstom/">Пример сайта</a>
+        <a href="/offer.html">Оферта</a>
+      </nav>
+      <a class="btn btn-primary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Обсудить сайт во ВКонтакте ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Технический аудит, приведение к 152-ФЗ и разработка сайтов для компаний</h1>
+        <p class="lead">
+          Проверяем действующий сайт по техническим параметрам, скорости, мобильной вёрстке и требованиям 152-ФЗ и Минздрава. Убираем зарубежные скрипты, исправляем ошибки без потери позиций в Яндексе или собираем новый сайт под ключ на российском хостинге.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#pricing">Посмотреть прайс</a>
+          <a class="btn btn-secondary" href="/finstom/">Открыть живой пример сайта</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing-section" id="pricing">
+      <div class="container">
+        <h2>Прайс-лист на услуги</h2>
+        <div class="pricing-grid">
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Техфикс сайта и 152-ФЗ (спецусловие)</h3>
+              <span class="price">14 000 ₽</span>
+            </div>
+            <p class="card-meta">Срок: 1–2 рабочих дня · по результатам экспресс-аудита</p>
+            <ul class="card-list">
+              <li>Удаление или локализация зарубежных скриптов и шрифтов (Google Fonts, GTM, reCAPTCHA).</li>
+              <li>Установка cookie-баннера, отдельного согласия на ПДн и актуализация Политики.</li>
+              <li>Подключение версии для слабовидящих и базовые правки SEO и мобильного отображения.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Запросить счёт на 14 000 ₽ ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Техфикс сайта и 152-ФЗ (стандарт)</h3>
+              <span class="price">19 000 ₽</span>
+            </div>
+            <p class="card-meta">Срок: 1–2 рабочих дня · стандартный тариф</p>
+            <ul class="card-list">
+              <li>Полная очистка от зарубежных ресурсов с переносом на сервер в РФ.</li>
+              <li>Настройка HTTPS, заголовков безопасности, cookie-уведомления, согласия и Политики ПДн.</li>
+              <li>Проверка скорости и мета-тегов с отчётом «До и После».</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Запросить счёт на 19 000 ₽ ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Апгрейд и мобильная адаптация сайта</h3>
+              <span class="price">45 000 ₽</span>
+            </div>
+            <p class="card-meta">Срок: 5–7 рабочих дней</p>
+            <ul class="card-list">
+              <li>Все работы из пакета техфикса и 152-ФЗ.</li>
+              <li>Полноценная мобильная вёрстка ключевых страниц, обновление главной и прайса.</li>
+              <li>Удобная форма заявки, кнопки связи и удаление устаревших блоков.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Запросить счёт на 45 000 ₽ ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Новый сайт под ключ (предоплата 50%)</h3>
+              <span class="price">45 000 ₽</span>
+            </div>
+            <p class="card-meta">Полная стоимость от 85 000 ₽ · срок 10–14 рабочих дней</p>
+            <ul class="card-list">
+              <li>Индивидуальный современный дизайн, адаптив под смартфоны и высокая скорость загрузки.</li>
+              <li>Перенос на российский хостинг с сохранением адресов страниц для Яндекса.</li>
+              <li>Полная готовность по 152-ФЗ и отраслевым требованиям с первого дня.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-primary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Обсудить разработку сайта ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Бот записи на приём (сайт и ВКонтакте)</h3>
+              <span class="price">25 000 ₽</span>
+            </div>
+            <p class="card-meta">Срок: 3–5 рабочих дней · сервер в РФ</p>
+            <ul class="card-list">
+              <li>Круглосуточный приём заявок на сайте и в сообществе ВКонтакте.</li>
+              <li>Сбор согласия по 152-ФЗ, выбор услуги и удобного времени визита.</li>
+              <li>Передача готовой карточки заявки администратору и напоминание клиенту за 24 часа.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Заказать бота записи ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Сопровождение сайта (1 месяц)</h3>
+              <span class="price">6 000 ₽</span>
+            </div>
+            <p class="card-meta">Без обязательной подписки · продление по желанию</p>
+            <ul class="card-list">
+              <li>До 5 оперативных обновлений контента, цен, графика и документов за месяц.</li>
+              <li>Контроль доступности, SSL, резервных копий и соответствия 152-ФЗ.</li>
+              <li>Ежемесячная сводка по обращениям и техническому состоянию сайта.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Подключить сопровождение ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Сайт и пост-визитные отзывы (1 месяц)</h3>
+              <span class="price">12 000 ₽</span>
+            </div>
+            <p class="card-meta">Комплексное сопровождение и рост рейтинга на картах</p>
+            <ul class="card-list">
+              <li>Полное техническое сопровождение сайта и обновление прайса.</li>
+              <li>Система пост-визитного сбора отзывов на Яндекс.Карты, 2ГИС и отраслевые площадки.</li>
+              <li>Передача замечаний клиентов напрямую руководителю до публикации на картах.</li>
+            </ul>
+            <div class="card-cta">
+              <a class="btn btn-secondary" href="https://vk.ru/im?sel=-243551967" target="_blank" rel="noopener noreferrer">Подключить пакет ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="payment">
+      <div class="container">
+        <h2>Порядок оплаты и документы</h2>
+        <div class="info-grid">
+          <div class="card">
+            <h3 class="card-title">Оплата по ссылке ЮKassa или по счёту</h3>
+            <p class="card-meta">Работаем официально как самозанятый (плательщик НПД, 422-ФЗ, без НДС).</p>
+            <p>После согласования задачи выставляем персональную платёжную ссылку через сервис <strong>ЮKassa</strong> (банковские карты МИР, Visa, Mastercard, СБП, SberPay, T-Pay, ЮMoney) либо прямой счёт-договор для оплаты с расчётного счёта ООО или ИП.</p>
+            <p>На каждую оплату формируется официальный фискальный чек ФНС России из приложения «Мой налог» (для юрлиц с указанием ИНН организации).</p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Реквизиты и контакты исполнителя</h3>
+            <p><strong>Исполнитель:</strong> самозанятый (НПД) Евдокимов Вадим, ИНН 560915812401, г. Рязань.</p>
+            <p><strong>Телефон:</strong> <a class="text-link" href="tel:+79277725245">+7 (927) 772-52-45</a></p>
+            <p><strong>Электронная почта:</strong> <a class="text-link" href="mailto:lone.ronin@vk.com">lone.ronin@vk.com</a></p>
+            <p><strong>Юридические документы:</strong> <a class="text-link" href="/offer.html">Публичная оферта</a> и <a class="text-link" href="/privacy.html">Политика конфиденциальности</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>© 2026 СметаГолосом · Самозанятый Евдокимов Вадим · ИНН 560915812401</div>
+      <div class="footer-links">
+        <a href="/">Главная</a>
+        <a href="/sites/">Услуги по сайтам</a>
+        <a href="/offer.html">Публичная оферта</a>
+        <a href="/privacy.html">Политика ПДн</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
