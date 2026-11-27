@@ -470,6 +470,11 @@
               <span class="tone-strong">основных услуг</span>
             </h2>
 
+            <div class="tax-toggle" id="priceTaxToggle" role="group" aria-label="Режим отображения цен">
+              <button class="tax-toggle-btn" type="button" data-tax-mode="full" aria-pressed="true">Полная цена</button>
+              <button class="tax-toggle-btn" type="button" data-tax-mode="tax13" aria-pressed="false">С вычетом −13%</button>
+            </div>
+
             <div class="price-tabs-vertical" role="tablist" aria-label="Категории прайс-листа">
               <button class="vtab-btn" type="button" role="tab" aria-selected="true" data-price-tab="therapy">
                 <span><span class="mono-idx">01</span> Терапия и гигиена</span>
@@ -493,7 +498,7 @@
               </button>
             </div>
 
-            <p class="price-note">Точную стоимость врач определяет после осмотра и снимка до начала процедур. Уточнить расчёт можно по телефону <a class="inline-tel" href="tel:+74912276227">+7 (4912) 27-62-27</a>.</p>
+            <p class="price-note" id="priceTaxNote">Точную стоимость врач определяет после осмотра и снимка до начала процедур. Уточнить расчёт можно по телефону <a class="inline-tel" href="tel:+74912276227">+7 (4912) 27-62-27</a>.</p>
           </div>
 
           <div class="prices-ledger">
@@ -505,23 +510,23 @@
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лечение кариеса<span class="price-detail">Сервисные услуги, анестезия, лечение, пломбирование</span></div>
-                  <div class="price-val">от 4 200 ₽</div>
+                  <div class="price-val" data-base-price="4200" data-prefix="от ">от 4 200 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лечение однокорневого пульпита<span class="price-detail">Сервисные услуги, анестезия, обработка канала, пломбирование</span></div>
-                  <div class="price-val">от 9 400 ₽</div>
+                  <div class="price-val" data-base-price="9400" data-prefix="от ">от 9 400 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Ультразвуковое снятие зубных отложений<span class="price-detail">Стоимость указана за 1 зуб</span></div>
-                  <div class="price-val">90 ₽</div>
+                  <div class="price-val" data-base-price="90" data-prefix="">90 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Полирование зуба<span class="price-detail">Стоимость указана за 1 зуб</span></div>
-                  <div class="price-val">90 ₽</div>
+                  <div class="price-val" data-base-price="90" data-prefix="">90 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лазерное отбеливание зубов</div>
-                  <div class="price-val">от 28 000 ₽</div>
+                  <div class="price-val" data-base-price="28000" data-prefix="от ">от 28 000 ₽</div>
                 </li>
               </ul>
             </div>
@@ -530,23 +535,23 @@
               <ul class="price-list">
                 <li class="price-row">
                   <div class="price-name">Удаление зуба простое<span class="price-detail">Сервисные услуги, анестезия, удаление, обработка лунки</span></div>
-                  <div class="price-val">от 2 800 ₽</div>
+                  <div class="price-val" data-base-price="2800" data-prefix="от ">от 2 800 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Удаление ретинированного зуба</div>
-                  <div class="price-val">от 7 000 ₽</div>
+                  <div class="price-val" data-base-price="7000" data-prefix="от ">от 7 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лазерная пластика уздечки языка или губ<span class="price-detail">Щадящая процедура без швов</span></div>
-                  <div class="price-val">от 5 000 ₽</div>
+                  <div class="price-val" data-base-price="5000" data-prefix="от ">от 5 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Установка 1 импланта AB Dental (Израиль)</div>
-                  <div class="price-val">от 23 000 ₽</div>
+                  <div class="price-val" data-base-price="23000" data-prefix="от ">от 23 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Протезирование на базе импланта</div>
-                  <div class="price-val">от 38 000 ₽</div>
+                  <div class="price-val" data-base-price="38000" data-prefix="от ">от 38 000 ₽</div>
                 </li>
               </ul>
             </div>
@@ -555,15 +560,15 @@
               <ul class="price-list">
                 <li class="price-row">
                   <div class="price-name">Установка 1 металлокерамической коронки<span class="price-detail">Сервисные услуги, анестезия, снятие слепков, изготовление и фиксация</span></div>
-                  <div class="price-val">от 15 000 ₽</div>
+                  <div class="price-val" data-base-price="15000" data-prefix="от ">от 15 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Съёмный протез из импортной пластмассы</div>
-                  <div class="price-val">от 16 000 ₽</div>
+                  <div class="price-val" data-base-price="16000" data-prefix="от ">от 16 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Съёмный протез из нейлона</div>
-                  <div class="price-val">от 41 000 ₽</div>
+                  <div class="price-val" data-base-price="41000" data-prefix="от ">от 41 000 ₽</div>
                 </li>
               </ul>
             </div>
@@ -572,19 +577,19 @@
               <ul class="price-list">
                 <li class="price-row">
                   <div class="price-name">Консультация врача-ортодонта</div>
-                  <div class="price-val">1 200 ₽</div>
+                  <div class="price-val" data-base-price="1200" data-prefix="">1 200 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лечение съёмной одночелюстной пластиной</div>
-                  <div class="price-val">от 18 500 ₽</div>
+                  <div class="price-val" data-base-price="18500" data-prefix="от ">от 18 500 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Фиксация брекетов на 1 челюсть</div>
-                  <div class="price-val">от 48 000 ₽</div>
+                  <div class="price-val" data-base-price="48000" data-prefix="от ">от 48 000 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Фиксация ретейнера на 6 зубов</div>
-                  <div class="price-val">от 9 400 ₽</div>
+                  <div class="price-val" data-base-price="9400" data-prefix="от ">от 9 400 ₽</div>
                 </li>
               </ul>
             </div>
@@ -593,15 +598,15 @@
               <ul class="price-list">
                 <li class="price-row">
                   <div class="price-name">Лечение молочного зуба</div>
-                  <div class="price-val">от 1 800 ₽</div>
+                  <div class="price-val" data-base-price="1800" data-prefix="от ">от 1 800 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Удаление молочного зуба</div>
-                  <div class="price-val">от 1 500 ₽</div>
+                  <div class="price-val" data-base-price="1500" data-prefix="от ">от 1 500 ₽</div>
                 </li>
                 <li class="price-row">
                   <div class="price-name">Лечение пульпита молочного зуба</div>
-                  <div class="price-val">от 2 800 ₽</div>
+                  <div class="price-val" data-base-price="2800" data-prefix="от ">от 2 800 ₽</div>
                 </li>
               </ul>
             </div>
@@ -786,6 +791,23 @@
                 </div>
               </div>
 
+              <div class="form-row-2">
+                <div class="field-group">
+                  <label class="field-label" for="patientDate">Желаемая дата</label>
+                  <input class="field-input" id="patientDate" name="date" type="date">
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="patientSlot">Удобное время</label>
+                  <select class="field-input" id="patientSlot" name="slot">
+                    <option value="09:30">09:30 (утро)</option>
+                    <option value="11:30" selected>11:30 (утро)</option>
+                    <option value="14:00">14:00 (день)</option>
+                    <option value="16:30">16:30 (день)</option>
+                    <option value="18:30">18:30 (вечер)</option>
+                  </select>
+                </div>
+              </div>
+
               <label class="consent-row" for="consentCheck">
                 <input id="consentCheck" type="checkbox" required>
                 <span>
@@ -794,7 +816,10 @@
               </label>
 
               <button class="btn btn-white btn-full" type="submit">Отправить заявку на приём <span aria-hidden="true">↗</span></button>
-              <p class="form-status" id="formStatus" role="status" hidden></p>
+              <div class="form-status-box" id="formStatusBox" role="status" hidden>
+                <p class="form-status-text" id="formStatus"></p>
+                <button class="ics-btn" id="formIcsBtn" type="button">Добавить визит в календарь (.ics) ↗</button>
+              </div>
             </form>
 
             <div class="accent-card-foot">
@@ -861,6 +886,92 @@
             <p class="dir-value"><a class="dir-tel" href="mailto:finstom@yandex.ru">finstom@yandex.ru</a></p>
             <button class="dir-link dir-link-btn" type="button" data-open-dialog="taxDialog">Справка на налоговый вычет 13% ↗</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: Architectural FAQ Accordion (Dark Obsidian before Footer) -->
+    <section class="section section-dark" id="faq">
+      <div class="container">
+        <div class="micro-bar micro-bar-dark">
+          <span>06 / ВОПРОСЫ</span>
+          <span>ФИНСТОМ_06</span>
+          <span>ПЕРЕД ПЕРВЫМ ВИЗИТОМ</span>
+        </div>
+
+        <div class="statement-split">
+          <p class="statement-caption statement-caption-dark">Короткие ответы.<br>Без сложных терминов.</p>
+          <h2 class="statement-heading">
+            <span class="tone-muted">Частые вопросы перед записью.</span>
+            <span class="tone-strong">Анестезия, смета до лечения, вычет 13% и приём детей.</span>
+          </h2>
+        </div>
+
+        <div class="faq-list" id="faqList">
+          <article class="faq-item is-open" data-faq-item>
+            <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="faqPanel1">
+              <span class="faq-left">
+                <span class="mono-idx">01 /</span>
+                <span class="faq-q">Больно ли лечить зубы и делать анестезию?</span>
+              </span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="faq-panel" id="faqPanel1">
+              <p>Используем современную местную анестезию и работаем в спокойном темпе, заранее объясняя каждый этап. Для операций на дёснах и пластики уздечки применяем стоматологический лазер: процедура проходит бескровно и без наложения швов.</p>
+            </div>
+          </article>
+
+          <article class="faq-item" data-faq-item>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faqPanel2">
+              <span class="faq-left">
+                <span class="mono-idx">02 /</span>
+                <span class="faq-q">Может ли стоимость вырасти уже в процессе лечения?</span>
+              </span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="faq-panel" id="faqPanel2" hidden>
+              <p>Нет. Первичная консультация стоматолога-терапевта бесплатная: врач осматривает зуб, при необходимости делает прицельный снимок на радиовизиографе на месте и называет точную сумму до начала процедур.</p>
+            </div>
+          </article>
+
+          <article class="faq-item" data-faq-item>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faqPanel3">
+              <span class="faq-left">
+                <span class="mono-idx">03 /</span>
+                <span class="faq-q">Как оформить налоговый вычет 13% за лечение?</span>
+              </span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="faq-panel" id="faqPanel3" hidden>
+              <p>Клиника ООО «Гиппократ» работает по официальной медицинской лицензии, выдаёт договор и чеки. Вы можете <button class="faq-inline-btn" type="button" data-open-dialog="taxDialog">запросить справку по форме ФНС онлайн ↗</button>, и администратор подготовит документ к вашему визиту.</p>
+            </div>
+          </article>
+
+          <article class="faq-item" data-faq-item>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faqPanel4">
+              <span class="faq-left">
+                <span class="mono-idx">04 /</span>
+                <span class="faq-q">Принимаете ли вы детей?</span>
+              </span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="faq-panel" id="faqPanel4" hidden>
+              <p>Да, ведём бережный детский приём: лечим молочные и постоянные зубы, делаем герметизацию фиссур и лазерную пластику уздечки губ и языка в спокойной обстановке, чтобы у ребёнка не формировался страх врача.</p>
+            </div>
+          </article>
+
+          <article class="faq-item" data-faq-item>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faqPanel5">
+              <span class="faq-left">
+                <span class="mono-idx">05 /</span>
+                <span class="faq-q">Как записаться вечером или в выходной, когда клиника закрыта?</span>
+              </span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="faq-panel" id="faqPanel5" hidden>
+              <p>Оставьте заявку в форме выше или пройдите 3 шага в боте 24/7 на сайте и во ВКонтакте. После записи вы сразу скачаете напоминание в календарь телефона (.ics), а администратор подтвердит точное окошко в начале рабочего дня.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>

@@ -1143,7 +1143,40 @@ section[id],
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  margin: 0 0 28px;
+  margin: 0 0 22px;
+}
+
+.tax-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--hairline-light-strong);
+  margin-bottom: 20px;
+  background: var(--white);
+}
+
+.tax-toggle-btn {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: var(--ink-dark-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 140ms ease-out, color 140ms ease-out;
+}
+
+.tax-toggle-btn + .tax-toggle-btn {
+  border-left: 1px solid var(--hairline-light-strong);
+}
+
+.tax-toggle-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.price-val.is-tax13 {
+  color: var(--accent);
 }
 
 .price-tabs-vertical {
@@ -1540,13 +1573,51 @@ section[id],
   font-weight: 500;
 }
 
-.form-status {
+.form-status,
+.form-status-box {
   margin: 4px 0 0;
-  padding: 12px 14px;
+  padding: 14px 16px;
   background: rgba(0, 0, 0, 0.24);
   border: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 0.875rem;
-  line-height: 1.45;
+  line-height: 1.48;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-status-box[hidden] {
+  display: none;
+}
+
+.form-status-text {
+  margin: 0;
+}
+
+.ics-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-sharp);
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 140ms ease-out, color 140ms ease-out;
+}
+
+.ics-btn:hover {
+  background: #FFFFFF;
+  color: #0B0E0D;
+}
+
+/* Native date input color-scheme on dark/accent surface */
+.accent-form-card input[type="date"] {
+  color-scheme: dark;
 }
 
 .form-status-light {
@@ -1778,6 +1849,117 @@ section[id],
   font-size: 0.75rem;
   color: var(--accent);
   font-weight: 500;
+}
+
+/* SECTION 06: Architectural Dark FAQ Accordion */
+.faq-list {
+  border-top: 1px solid var(--hairline-dark);
+  max-width: 960px;
+  margin-left: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--hairline-dark);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink-light);
+}
+
+.faq-left {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.faq-q {
+  font-size: clamp(1rem, 1.4vw, 1.1875rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.faq-toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 1px solid var(--hairline-dark-strong);
+  border-radius: var(--radius-sharp);
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.faq-toggle::before,
+.faq-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background-color: var(--ink-light);
+  transition: transform 160ms ease-out;
+}
+
+.faq-toggle::before {
+  transform: translate(-50%, -50%);
+}
+
+.faq-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-item.is-open .faq-toggle {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.faq-item.is-open .faq-toggle::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.faq-item.is-open .faq-toggle::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.faq-panel[hidden] {
+  display: none;
+}
+
+.faq-panel {
+  padding: 0 56px 26px 46px;
+}
+
+.faq-panel p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-light-body);
+}
+
+.faq-inline-btn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--accent-bright);
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(44, 196, 151, 0.5);
+}
+
+.faq-inline-btn:hover {
+  color: var(--ink-light);
+  border-color: var(--ink-light);
 }
 
 /* MONUMENTAL ARCHITECTURAL FOOTER */
@@ -2060,10 +2242,28 @@ html.a11y-large .bot-chip {
 html.a11y-large .btn-white,
 html.a11y-large .btn-accent,
 html.a11y-large .vtab-btn[aria-selected="true"],
-html.a11y-large .chip-btn[aria-pressed="true"] {
+html.a11y-large .chip-btn[aria-pressed="true"],
+html.a11y-large .tax-toggle-btn[aria-pressed="true"],
+html.a11y-large .ics-btn {
   background: #000000;
   color: #FFFFFF;
   border-color: #000000;
+}
+
+html.a11y-large .form-status-box {
+  background: #FFFFFF;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+html.a11y-large .faq-item.is-open .faq-toggle {
+  background: #000000;
+  border-color: #000000;
+}
+
+html.a11y-large .faq-item.is-open .faq-toggle::before,
+html.a11y-large .faq-item.is-open .faq-toggle::after {
+  background-color: #FFFFFF;
 }
 
 html.a11y-large .inline-link-light,
@@ -2226,6 +2426,12 @@ html.a11y-large .accent-card-foot {
   .acc-trigger {
     gap: 14px;
     padding: 20px 0;
+  }
+  .faq-panel {
+    padding: 0 0 22px 0;
+  }
+  .faq-left {
+    gap: 12px;
   }
   .price-row {
     padding: 16px 18px;

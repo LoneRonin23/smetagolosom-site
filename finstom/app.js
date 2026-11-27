@@ -4,6 +4,98 @@
   var A11Y_KEY = "clinic_a11y_large";
   var COOKIE_KEY = "clinic_cookie_choice";
 
+  function formatRub(num) {
+    return Math.round(num).toLocaleString("ru-RU");
+  }
+
+  function getActiveBrand() {
+    var node = document.querySelector("[data-brand-name]");
+    return (node && node.textContent.trim()) || DEFAULT_BRAND;
+  }
+
+  // Russian phone input mask: +7 (900) 000-00-00 with clean Backspace handling
+  function attachPhoneMask(input) {
+    if (!input || input.dataset.maskBound) return;
+    input.dataset.maskBound = "1";
+    var prev = "";
+    input.addEventListener("input", function (e) {
+      var raw = input.value;
+      var digits = raw.replace(/\D/g, "");
+      var isDel = e.inputType && e.inputType.indexOf("delete") === 0;
+      if (isDel && digits.length === prev.replace(/\D/g, "").length && raw.length < prev.length) {
+        digits = digits.slice(0, -1);
+      }
+      if (digits.charAt(0) === "8") digits = "7" + digits.slice(1);
+      if (digits.charAt(0) === "9") digits = "7" + digits;
+      digits = digits.slice(0, 11);
+      var out = "";
+      if (digits.length) {
+        out = "+7";
+        if (digits.length > 1) out += " (" + digits.slice(1, 4);
+        if (digits.length >= 5) out += ") " + digits.slice(4, 7);
+        if (digits.length >= 8) out += "-" + digits.slice(7, 9);
+        if (digits.length >= 10) out += "-" + digits.slice(9, 11);
+      }
+      input.value = out;
+      prev = out;
+    });
+  }
+
+  // RFC 5545 .ics calendar file generator
+  function downloadVisitIcs(details) {
+    var esc = function (s) {
+      return String(s || "")
+        .replace(/\\/g, "\\\\")
+        .replace(/[,;]/g, function (m) { return "\\" + m; })
+        .replace(/\n/g, "\\n");
+    };
+    var dateStr = details.date || new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+    var slotStr = details.slot || "11:30";
+    var hh = parseInt(slotStr.slice(0, 2), 10) || 11;
+    var mm = slotStr.slice(3, 5) || "30";
+    var endHh = String(Math.min(20, hh + 1)).padStart(2, "0");
+    var dtStart = dateStr.replace(/-/g, "") + "T" + String(hh).padStart(2, "0") + mm + "00";
+    var dtEnd = dateStr.replace(/-/g, "") + "T" + endHh + mm + "00";
+    var stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    var brand = getActiveBrand();
+
+    var lines = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Finstom Clinic//Booking//RU",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      "UID:" + (details.num || "FS") + "-" + Date.now() + "@smetagolosom.ru",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + dtStart,
+      "DTEND:" + dtEnd,
+      "SUMMARY:" + esc("Приём в клинике «" + brand + "»: " + (details.reason || "Консультация")),
+      "DESCRIPTION:" + esc("Заявка " + (details.num || "") + ". Врач: " + (details.doctor || "Любой свободный врач") + ". Телефон регистратуры: +7 (4912) 27-62-27."),
+      "LOCATION:" + esc("г. Рязань, ул. Дзержинского, д. 59, корп. 3"),
+      "BEGIN:VALARM",
+      "TRIGGER:-PT2H",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:" + esc("Через 2 часа приём в клинике «" + brand + "»"),
+      "END:VALARM",
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    var blob = new Blob([lines], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "finstom-visit.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  }
+
+  // Bind phone masks on initial inputs
+  attachPhoneMask(document.getElementById("patientPhone"));
+  attachPhoneMask(document.getElementById("taxPhone"));
+
   // 1. Mobile navigation drawer
   var menuBtn = document.getElementById("menuToggle");
   var drawer = document.getElementById("mobileDrawer");
@@ -75,7 +167,30 @@
     });
   });
 
-  // 4. Price tabs
+  // 3b. Section 06 FAQ Accordion
+  var faqItems = document.querySelectorAll("[data-faq-item]");
+  faqItems.forEach(function (item) {
+    var trigger = item.querySelector(".faq-trigger");
+    var panel = item.querySelector(".faq-panel");
+    if (!trigger || !panel) return;
+    trigger.addEventListener("click", function () {
+      var isOpen = item.classList.contains("is-open");
+      faqItems.forEach(function (other) {
+        other.classList.remove("is-open");
+        var ot = other.querySelector(".faq-trigger");
+        var op = other.querySelector(".faq-panel");
+        if (ot) ot.setAttribute("aria-expanded", "false");
+        if (op) op.hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add("is-open");
+        trigger.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+    });
+  });
+
+  // 4. Price tabs + Tax deduction (-13%) toggle
   var tabButtons = document.querySelectorAll("[data-price-tab]");
   var tabPanels = document.querySelectorAll("[data-price-panel]");
   tabButtons.forEach(function (btn) {
@@ -90,11 +205,70 @@
     });
   });
 
-  // 5. Booking form & doctor pre-fill
+  var taxToggleBtns = document.querySelectorAll("[data-tax-mode]");
+  var priceNodes = document.querySelectorAll("[data-base-price]");
+  var priceTaxNote = document.getElementById("priceTaxNote");
+  var defaultTaxNoteHtml = priceTaxNote ? priceTaxNote.innerHTML : "";
+
+  function applyTaxMode(mode) {
+    var isTax = mode === "tax13";
+    taxToggleBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-tax-mode") === mode));
+    });
+    priceNodes.forEach(function (node) {
+      var base = parseInt(node.getAttribute("data-base-price"), 10);
+      var prefix = node.getAttribute("data-prefix") || "";
+      if (isNaN(base)) return;
+      var shown = isTax ? Math.round(base * 0.87) : base;
+      node.textContent = prefix + formatRub(shown) + " ₽";
+      node.classList.toggle("is-tax13", isTax);
+    });
+    if (priceTaxNote) {
+      if (isTax) {
+        priceTaxNote.innerHTML =
+          'Показана ориентировочная стоимость после возврата 13% по ст. 219 НК РФ. ' +
+          '<button class="dir-link dir-link-btn" type="button" data-open-dialog="taxDialog">Запросить справку ФНС ↗</button>';
+        var dynTrigger = priceTaxNote.querySelector("[data-open-dialog]");
+        if (dynTrigger) {
+          dynTrigger.addEventListener("click", function () {
+            var d = document.getElementById("taxDialog");
+            if (d && typeof d.showModal === "function") d.showModal();
+          });
+        }
+      } else {
+        priceTaxNote.innerHTML = defaultTaxNoteHtml;
+      }
+    }
+  }
+  taxToggleBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyTaxMode(btn.getAttribute("data-tax-mode"));
+    });
+  });
+
+  // 5. Booking form, default date, doctor pre-fill & .ics calendar download
   var bookingForm = document.getElementById("bookingForm");
+  var formStatusBox = document.getElementById("formStatusBox");
   var formStatus = document.getElementById("formStatus");
+  var formIcsBtn = document.getElementById("formIcsBtn");
   var reasonSelect = document.getElementById("patientReason");
   var doctorSelect = document.getElementById("patientDoctor");
+  var dateInput = document.getElementById("patientDate");
+  var slotSelect = document.getElementById("patientSlot");
+  var lastFormBooking = null;
+
+  if (dateInput) {
+    var today = new Date();
+    var tomorrow = new Date(Date.now() + 86400000);
+    if (tomorrow.getDay() === 0) tomorrow = new Date(tomorrow.getTime() + 86400000);
+    var maxDate = new Date(Date.now() + 60 * 86400000);
+    var toIso = function (d) {
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    };
+    dateInput.min = toIso(today);
+    dateInput.max = toIso(maxDate);
+    dateInput.value = toIso(tomorrow);
+  }
 
   function openBookingFormWith(reason, doctor) {
     if (reasonSelect && reason) reasonSelect.value = reason;
@@ -105,23 +279,42 @@
     if (nameInput) nameInput.focus({ preventScroll: true });
   }
 
-  if (bookingForm && formStatus) {
+  if (bookingForm && formStatus && formStatusBox) {
     bookingForm.addEventListener("submit", function (event) {
       event.preventDefault();
       var nameInput = document.getElementById("patientName");
       var phoneInput = document.getElementById("patientPhone");
       var nameVal = nameInput ? nameInput.value.trim() : "";
       var phoneVal = phoneInput ? phoneInput.value.trim() : "";
-      var docVal = doctorSelect ? doctorSelect.value : "";
-      formStatus.hidden = false;
+      var reasonVal = reasonSelect ? reasonSelect.value : "Консультация терапевта";
+      var docVal = doctorSelect ? doctorSelect.value : "Любой свободный врач";
+      var dateVal = dateInput ? dateInput.value : "";
+      var slotVal = slotSelect ? slotSelect.value : "11:30";
+      var num = "ФС-" + (1000 + Math.floor(Math.random() * 9000));
+
+      lastFormBooking = {
+        num: num,
+        date: dateVal,
+        slot: slotVal,
+        reason: reasonVal,
+        doctor: docVal
+      };
+
+      formStatusBox.hidden = false;
       formStatus.textContent =
-        "Заявка оформлена для " +
-        (nameVal || "пациента") +
-        " (" +
-        (phoneVal || "телефон указан") +
+        "Заявка " + num + " принята для " + (nameVal || "пациента") +
+        " (" + (phoneVal || "телефон указан") +
+        (dateVal ? ", " + dateVal + " в " + slotVal : "") +
         (docVal && docVal !== "Любой свободный врач" ? ", врач: " + docVal : "") +
-        "). На рабочем сайте заявка сразу поступит администратору на +7 (4912) 27-62-27.";
+        "). Администратор подтвердит время по +7 (4912) 27-62-27.";
       bookingForm.reset();
+      if (dateInput && dateVal) dateInput.value = dateVal;
+    });
+  }
+
+  if (formIcsBtn) {
+    formIcsBtn.addEventListener("click", function () {
+      if (lastFormBooking) downloadVisitIcs(lastFormBooking);
     });
   }
 
@@ -226,10 +419,17 @@
     });
   });
 
-  // 7. Interactive 3-step 24/7 Booking Bot (Site + VK only)
+  // 7. Interactive 3-step 24/7 Booking Bot (Site + VK only) with phone mask + .ics export
   var botDialog = document.getElementById("botDialog");
   var botControls = document.getElementById("botControls");
   var botState = { step: 1, service: "", slot: "", phone: "" };
+
+  function slotToTime(label) {
+    if (label.indexOf("Утро") !== -1) return "10:00";
+    if (label.indexOf("День") !== -1) return "14:00";
+    if (label.indexOf("Вечер") !== -1) return "18:00";
+    return "11:00";
+  }
 
   function renderBot() {
     if (!botDialog || !botControls) return;
@@ -314,6 +514,7 @@
         renderBot();
       });
       botControls.appendChild(form);
+      attachPhoneMask(document.getElementById("botPhoneInput"));
       var resetBtn = document.getElementById("botResetBtn");
       if (resetBtn) {
         resetBtn.addEventListener("click", function () {
@@ -333,15 +534,38 @@
         ". Администратор подтвердит точное время, а бот пришлёт напоминание за 24 часа до визита.",
       false
     );
+    var doneWrap = document.createElement("div");
+    doneWrap.className = "bot-choices";
+
+    var icsBtn = document.createElement("button");
+    icsBtn.type = "button";
+    icsBtn.className = "btn btn-accent btn-sm";
+    icsBtn.textContent = "В календарь (.ics) ↗";
+    icsBtn.addEventListener("click", function () {
+      var tom = new Date(Date.now() + 86400000);
+      if (tom.getDay() === 0) tom = new Date(tom.getTime() + 86400000);
+      var iso = tom.getFullYear() + "-" + String(tom.getMonth() + 1).padStart(2, "0") + "-" + String(tom.getDate()).padStart(2, "0");
+      downloadVisitIcs({
+        num: "БОТ-" + (1000 + Math.floor(Math.random() * 9000)),
+        date: iso,
+        slot: slotToTime(botState.slot),
+        reason: botState.service,
+        doctor: "Подберёт администратор"
+      });
+    });
+
     var againBtn = document.createElement("button");
     againBtn.type = "button";
     againBtn.className = "btn btn-ghost-light btn-sm";
-    againBtn.textContent = "Пройти сценарий ещё раз";
+    againBtn.textContent = "Пройти ещё раз";
     againBtn.addEventListener("click", function () {
       botState = { step: 1, service: "", slot: "", phone: "" };
       renderBot();
     });
-    botControls.appendChild(againBtn);
+
+    doneWrap.appendChild(icsBtn);
+    doneWrap.appendChild(againBtn);
+    botControls.appendChild(doneWrap);
   }
   renderBot();
 
