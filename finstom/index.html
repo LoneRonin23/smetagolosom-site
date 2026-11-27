@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Финская стоматология в Рязани: лечение и имплантация</title>
-  <meta name="description" content="Стоматологическая клиника в Рязани на ул. Дзержинского, 59. Работаем с 2009 года. Терапия, имплантация, ортодонтия.">
+  <meta name="description" content="Стоматологическая клиника в Рязани на ул. Дзержинского, 59, корп. 3. Работаем с 2009 года. Терапия, имплантация AB Dental, ортодонтия и детский приём.">
   <link rel="canonical" href="https://smetagolosom.ru/finstom/">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="preload" as="image" href="./img/clinic-hero.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="./img/hero-arch.webp" fetchpriority="high">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
@@ -24,6 +24,7 @@
   <meta name="twitter:description" content="Стоматологическая клиника в Рязани на ул. Дзержинского, 59, корп. 3. Терапия, хирургия, имплантация и ортодонтия.">
   <meta name="twitter:image" content="https://smetagolosom.ru/finstom/img/og-preview.jpg">
 
+  <link rel="stylesheet" href="/fonts/onest.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="./style.css">
 
@@ -52,22 +53,35 @@
   <a class="skip-link" href="#main">Перейти к основному содержанию</a>
 
   <header class="site-header">
-    <div class="container header-row">
-      <a class="brand-link" href="#top" data-brand-name>Финская стоматология</a>
+    <div class="header-grid">
+      <a class="brand-cell" href="#top">
+        <span class="brand-name" data-brand-name>Финская стоматология</span><span class="brand-dot" aria-hidden="true">.</span>
+      </a>
 
-      <nav aria-label="Основная навигация">
+      <nav class="nav-cell" aria-label="Основная навигация">
         <ul class="nav-list">
           <li><a class="nav-link" href="#services">Направления</a></li>
-          <li><a class="nav-link" href="#prices">Цены</a></li>
+          <li><a class="nav-link" href="#estimator">Расчёт</a></li>
+          <li><a class="nav-link" href="#prices">Прайс</a></li>
           <li><a class="nav-link" href="#doctors">Врачи</a></li>
           <li><a class="nav-link" href="#contacts">Контакты</a></li>
         </ul>
       </nav>
 
-      <div class="header-actions">
-        <button class="a11y-btn" type="button" data-a11y-toggle aria-pressed="false">Версия для слабовидящих</button>
+      <div class="meta-cell">
+        <span class="live-clock" id="headerClock" aria-live="off">
+          <span class="live-dot" id="headerLiveDot" aria-hidden="true"></span>
+          <span id="headerClockText">MSK · ПН–СБ</span>
+        </span>
+        <button class="a11y-btn" type="button" data-a11y-toggle aria-pressed="false" title="Версия для слабовидящих">
+          <span class="a11y-icon" aria-hidden="true">Аа</span>
+          <span class="a11y-label">Слабовидящим</span>
+        </button>
+      </div>
+
+      <div class="action-cell">
         <a class="phone-link" href="tel:+74912276227">+7 (4912) 27-62-27</a>
-        <a class="btn btn-primary" href="#booking">Записаться на приём</a>
+        <a class="header-cta" href="#booking">Записаться <span aria-hidden="true">↗</span></a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Открыть меню">
           Меню
         </button>
@@ -76,434 +90,831 @@
 
     <div class="mobile-drawer" id="mobileDrawer" hidden>
       <ul class="mobile-nav-list">
-        <li><a href="#services">Направления</a></li>
-        <li><a href="#prices">Цены</a></li>
-        <li><a href="#doctors">Врачи</a></li>
-        <li><a href="#contacts">Контакты</a></li>
+        <li><a href="#services"><span class="mono-idx">01</span> Направления</a></li>
+        <li><a href="#estimator"><span class="mono-idx">02</span> Ориентир стоимости</a></li>
+        <li><a href="#prices"><span class="mono-idx">03</span> Прайс-лист</a></li>
+        <li><a href="#doctors"><span class="mono-idx">04</span> Врачи клиники</a></li>
+        <li><a href="#contacts"><span class="mono-idx">05</span> Контакты и запись</a></li>
       </ul>
       <div class="mobile-drawer-actions">
-        <button class="a11y-btn" type="button" data-a11y-toggle aria-pressed="false">Версия для слабовидящих</button>
-        <a class="btn btn-secondary" href="tel:+74912276227">Позвонить +7 (4912) 27-62-27</a>
-        <a class="btn btn-primary" href="#booking">Записаться на приём</a>
+        <button class="a11y-btn a11y-btn-full" type="button" data-a11y-toggle aria-pressed="false">Версия для слабовидящих</button>
+        <a class="btn btn-outline-dark" href="tel:+74912276227">+7 (4912) 27-62-27</a>
+        <a class="btn btn-accent" href="#booking">Записаться на приём ↗</a>
       </div>
     </div>
   </header>
 
   <main id="main">
+    <!-- HERO: Architectural Dark Obsidian + Full-Bleed Studio Dusk Interior (Sharnin AE Stone / EQUA) -->
     <section class="hero" id="top">
-      <div class="container hero-grid">
-        <div>
-          <h1 class="hero-title"><span data-brand-name>Финская стоматология</span> в Рязани, где лечат спокойно</h1>
-          <p class="hero-lead">
-            Клиника на улице Дзержинского, 59, корп. 3 работает с 2009 года. Проводим комплексное лечение взрослых и детей без боли, согласовываем стоимость до начала процедур и принимаем по предварительной записи.
-          </p>
-          <ul class="hero-facts">
-            <li>Врачи со стажем 20–30 лет</li>
-            <li>Бесплатная консультация стоматолога-терапевта</li>
-            <li>Приём Пн–Пт 9:00–20:00, Сб 9:00–15:00</li>
-          </ul>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#booking">Записаться на приём</a>
-            <a class="btn btn-secondary" href="#prices">Открыть прайс</a>
+      <div class="hero-backdrop" aria-hidden="true">
+        <picture>
+          <source srcset="./img/hero-arch.webp 1600w" sizes="100vw" type="image/webp">
+          <img class="hero-bg-img" src="./img/hero-arch.webp" width="1600" height="900" fetchpriority="high" alt="Архитектурная зона приёма Финской стоматологии в Рязани с отделкой из натурального камня, тёмного дуба и тёплой подсветкой">
+        </picture>
+        <div class="hero-scrim"></div>
+      </div>
+
+      <div class="hero-shell">
+        <aside class="hero-rail" aria-hidden="true">
+          <span class="rail-tag">РЯЗАНЬ · 2009</span>
+          <span class="rail-line"></span>
+          <span class="rail-tag">ДЗЕРЖИНСКОГО, 59</span>
+        </aside>
+
+        <div class="hero-body">
+          <div class="hero-top-meta">
+            <span class="bracket-tag">[ КЛИНИКА В РЯЗАНИ ]</span>
+            <span class="hero-sub-meta">ООО «ГИППОКРАТ» · ЛИЦЕНЗИРОВАННЫЙ ПРИЁМ</span>
+          </div>
+
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="hero-line-1" data-brand-name>Финская стоматология</span>
+              <span class="hero-line-2">
+                <span class="tone-muted">в Рязани, где лечат</span> спокойно <span class="inline-badge">с 2009 года</span>
+              </span>
+            </h1>
+
+            <p class="hero-lead">
+              Клиника на улице Дзержинского, 59, корп. 3. Комплексное лечение взрослых и детей без боли, радиовизиограф и лазер на месте, фиксированная смета до начала процедур.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-accent" href="#booking">Записаться на приём <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost-light" href="#prices">Открыть прайс-лист</a>
+            </div>
+          </div>
+
+          <div class="hero-proof-corner">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <span class="proof-kicker">17+ ЛЕТ ПРАКТИКИ</span>
+            <span class="proof-val">Врачи со стажем 20–30 лет</span>
           </div>
         </div>
-
-        <figure class="hero-media">
-          <picture>
-            <source srcset="./img/clinic-hero.webp 1200w" sizes="(max-width: 980px) 100vw, 540px" type="image/webp">
-            <img src="./img/clinic-hero.webp" srcset="./img/clinic-hero.webp 1200w" sizes="(max-width: 980px) 100vw, 540px" width="1200" height="900" fetchpriority="high" alt="Спокойная зона приёма и ожидания стоматологической клиники со светлыми каменными стенами и деревянной отделкой">
-          </picture>
-        </figure>
       </div>
-    </section>
 
-    <section class="section" id="services">
-      <div class="container">
-        <h2 class="section-heading">Направления клиники</h2>
-        <p class="hero-lead">
-          В клинике используют сертифицированные материалы и препараты, стоматологический лазер и диагностику на радиовизиографе. Мы лечим взрослых и детей, сохраняя зубы даже в сложных клинических случаях и заранее объясняя каждый этап.
-        </p>
-        <div class="services-grid">
-          <article class="card">
-            <h3 class="card-title">Терапия и профилактика</h3>
-            <p class="card-text">Лечение кариеса, пульпита и периодонтита любой сложности с надёжной анестезией и точной диагностикой состояния нерва. Проводим профилактику заболеваний полости рта на ранних стадиях, герметизацию фиссур, ультразвуковое снятие зубных отложений и полирование эмали.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Имплантология и хирургия</h3>
-            <p class="card-text">Установка израильских имплантов AB Dental (Alpha-Bio), простое и сложное удаление зубов, включая ретинированные восьмёрки. Выполняем щадящие операции на дёснах и пластику уздечки губ и языка с помощью стоматологического лазера без швов.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Протезирование зубов</h3>
-            <p class="card-text">Изготовление несъёмных металлокерамических коронок любой сложности, протезирование на имплантах и восстановление зубного ряда съёмными протезами из импортной пластмассы или гибкого нейлона.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Ортодонтия</h3>
-            <p class="card-text">Исправление прикуса и аномалий зубного ряда у детей, подростков и взрослых. Подбираем съёмные одночелюстные пластины, брекет-системы и надёжные ретенционные конструкции для закрепления результата.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Эстетическая стоматология</h3>
-            <p class="card-text">Бережное лазерное отбеливание зубов, художественная реставрация и восстановление анатомической формы зуба, устранение сколов эмали, трещин и потемнений.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Детский приём и диагностика</h3>
-            <p class="card-text">Лечение молочных и постоянных зубов у детей в спокойной обстановке, чтобы у ребёнка сформировалось доверие к врачу. Прицельные снимки выполняем на месте радиовизиографом с минимальной лучевой нагрузкой.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="estimator">
-      <div class="container">
-        <h2 class="section-heading">Ориентир по стоимости</h2>
-        <div class="estimator-chips" role="group" aria-label="Выбор повода обращения">
-          <button class="tab-btn" type="button" data-estimate="pain" aria-pressed="true">Болит зуб</button>
-          <button class="tab-btn" type="button" data-estimate="filling" aria-pressed="false">Выпала пломба</button>
-          <button class="tab-btn" type="button" data-estimate="implant" aria-pressed="false">Нет зуба</button>
-          <button class="tab-btn" type="button" data-estimate="braces" aria-pressed="false">Исправить прикус</button>
-          <button class="tab-btn" type="button" data-estimate="kids" aria-pressed="false">Приём для ребёнка</button>
-          <button class="tab-btn" type="button" data-estimate="hygiene" aria-pressed="false">Гигиена и отбеливание</button>
-        </div>
-
-        <div class="card estimator-card">
+      <div class="hero-telemetry">
+        <div class="telemetry-cell">
+          <span class="mono-idx">01 /</span>
           <div>
-            <h3 class="card-title" id="estTitle">Диагностика и лечение кариеса или пульпита</h3>
-            <p class="card-text" id="estDesc">Врач осмотрит зуб, сделает прицельный снимок на радиовизиографе и назовёт точную сумму до начала лечения.</p>
-            <ul class="estimator-meta">
-              <li id="estStep">Первый шаг: бесплатная консультация терапевта</li>
-              <li id="estDoctor">Рекомендуем: Герцовская М. В. или Петросян О. В.</li>
-            </ul>
+            <strong class="telemetry-num">0 ₽</strong>
+            <span class="telemetry-label">первичная консультация терапевта</span>
           </div>
-          <div class="estimator-aside">
+        </div>
+        <div class="telemetry-cell">
+          <span class="mono-idx">02 /</span>
+          <div>
+            <strong class="telemetry-num">5 врачей</strong>
+            <span class="telemetry-label">терапия, хирургия, ортопедия, ортодонтия</span>
+          </div>
+        </div>
+        <div class="telemetry-cell">
+          <span class="mono-idx">03 /</span>
+          <div>
+            <strong class="telemetry-num">Пн–Сб</strong>
+            <span class="telemetry-label">Пн–Пт 9:00–20:00, Сб 9:00–15:00</span>
+          </div>
+        </div>
+        <div class="telemetry-cell telemetry-cell-action">
+          <span class="mono-idx">04 /</span>
+          <div>
+            <strong class="telemetry-num">24 / 7</strong>
+            <span class="telemetry-label">онлайн-запись на сайте и во ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: Directions — Light Alabaster + Only.digital 50/50 Expandable Hairline Rows + AVA Micro-Header -->
+    <section class="section section-light" id="services">
+      <div class="container">
+        <div class="micro-bar micro-bar-light">
+          <span>01 / НАПРАВЛЕНИЯ</span>
+          <span>ФИНСТОМ_01</span>
+          <span>ВЗРОСЛЫЕ И ДЕТИ</span>
+        </div>
+
+        <div class="statement-split">
+          <p class="statement-caption">Клинический подход.<br>С 2009 года в Рязани.</p>
+          <h2 class="statement-heading">
+            <span class="tone-muted">Сохраняем зубы даже в сложных случаях.</span>
+            <span class="tone-strong">Работаем с лазером, радиовизиографом и сертифицированными материалами, заранее объясняя каждый этап.</span>
+          </h2>
+        </div>
+
+        <div class="accordion-list" id="servicesAccordion">
+          <article class="acc-item is-open" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="true" aria-controls="srvPanel1">
+              <div class="acc-left">
+                <span class="mono-idx">01 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+                </span>
+                <h3 class="acc-title">Терапия и профилактика</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Лечение кариеса, пульпита и периодонтита любой сложности с надёжной анестезией и прицельной диагностикой.</p>
+                  <span class="acc-price">от 4 200 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel1">
+              <div class="acc-panel-inner">
+                <p>Проводим бережную диагностику состояния нерва, герметизацию фиссур, ультразвуковое снятие зубных отложений (90 ₽ за зуб) и полирование эмали. Первичная консультация стоматолога-терапевта бесплатная.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Герцовская Марина Владимировна" data-book-reason="Лечение зуба или гигиена">Записаться на терапию ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="acc-item" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="srvPanel2">
+              <div class="acc-left">
+                <span class="mono-idx">02 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                <h3 class="acc-title">Имплантология и хирургия</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Установка израильских имплантов AB Dental (Alpha-Bio), простое и сложное удаление зубов, лазерная хирургия.</p>
+                  <span class="acc-price">от 23 000 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel2" hidden>
+              <div class="acc-panel-inner">
+                <p>Удаляем ретинированные восьмёрки и выполняем щадящие операции на дёснах и пластику уздечки губ и языка с помощью стоматологического лазера без швов и долгой реабилитации.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Пономарёв Евгений Олегович" data-book-reason="Имплантация и протезирование">Записаться к хирургу-имплантологу ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="acc-item" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="srvPanel3">
+              <div class="acc-left">
+                <span class="mono-idx">03 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="12,3 21,19 3,19" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                <h3 class="acc-title">Протезирование зубов</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Несъёмные металлокерамические коронки любой сложности, протезирование на имплантах и съёмные конструкции.</p>
+                  <span class="acc-price">от 15 000 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel3" hidden>
+              <div class="acc-panel-inner">
+                <p>Восстанавливаем зубной ряд коронками, протезами на имплантах и удобными съёмными протезами из импортной пластмассы или гибкого нейлона с точной подгонкой прикуса.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Петросян Оксана Викторовна" data-book-reason="Имплантация и протезирование">Записаться к ортопеду ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="acc-item" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="srvPanel4">
+              <div class="acc-left">
+                <span class="mono-idx">04 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                <h3 class="acc-title">Ортодонтия</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Исправление прикуса у детей, подростков и взрослых под руководством главного врача со стажем более 30 лет.</p>
+                  <span class="acc-price">от 18 500 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel4" hidden>
+              <div class="acc-panel-inner">
+                <p>Подбираем съёмные одночелюстные пластины, брекет-системы и надёжные ретенционные конструкции для закрепления результата с понятным графиком визитов.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Кузьмина Наталия Анатольевна" data-book-reason="Ортодонтия">Записаться к ортодонту ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="acc-item" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="srvPanel5">
+              <div class="acc-left">
+                <span class="mono-idx">05 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3V21M3 12H21" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                <h3 class="acc-title">Эстетическая стоматология</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Бережное лазерное отбеливание и художественная реставрация сколов, трещин и потемнений эмали.</p>
+                  <span class="acc-price">от 4 200 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel5" hidden>
+              <div class="acc-panel-inner">
+                <p>Восстанавливаем естественную анатомию и оттенок эмали без лишней обточки. Лазерное отбеливание проходит комфортно под контролем врача.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Петросян Оксана Викторовна" data-book-reason="Лечение зуба или гигиена">Записаться на реставрацию ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="acc-item" data-acc-item>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="srvPanel6">
+              <div class="acc-left">
+                <span class="mono-idx">06 /</span>
+                <span class="geo-mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="7" height="7" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                <h3 class="acc-title">Детский приём и диагностика</h3>
+              </div>
+              <div class="acc-right">
+                <div class="acc-summary">
+                  <p class="acc-lead">Спокойное лечение молочных и постоянных зубов у детей, прицельные снимки радиовизиографом на месте.</p>
+                  <span class="acc-price">от 1 800 ₽</span>
+                </div>
+                <span class="acc-toggle" aria-hidden="true"></span>
+              </div>
+            </button>
+            <div class="acc-panel" id="srvPanel6" hidden>
+              <div class="acc-panel-inner">
+                <p>Проводим приём без спешки, чтобы у ребёнка сформировалось доверие к врачу. Прицельная диагностика на радиовизиографе выполняется в клинике с минимальной лучевой нагрузкой.</p>
+                <div class="acc-panel-actions">
+                  <button class="text-cta" type="button" data-book-doctor="Любой свободный врач" data-book-reason="Детский приём">Записать ребёнка на приём ↗</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: Estimator & Standards — Deep Obsidian (Sharnin AE Stone + EQUA) -->
+    <section class="section section-dark" id="estimator">
+      <div class="container">
+        <div class="micro-bar micro-bar-dark">
+          <span>02 / ОРИЕНТИР СТОИМОСТИ</span>
+          <span>ФИНСТОМ_02</span>
+          <span>СМЕТА ДО ЛЕЧЕНИЯ</span>
+        </div>
+
+        <div class="statement-split">
+          <p class="statement-caption statement-caption-dark">Быстрый расчёт.<br>Без скрытых доплат.</p>
+          <h2 class="statement-heading">
+            <span class="tone-muted">Выберите ваш повод обращения.</span>
+            <span class="tone-strong">Покажем первый шаг, профильного врача и ориентир стоимости до визита.</span>
+          </h2>
+        </div>
+
+        <div class="estimator-chips" role="group" aria-label="Выбор повода обращения">
+          <button class="chip-btn" type="button" data-estimate="pain" aria-pressed="true">01 Болит зуб</button>
+          <button class="chip-btn" type="button" data-estimate="filling" aria-pressed="false">02 Выпала пломба</button>
+          <button class="chip-btn" type="button" data-estimate="implant" aria-pressed="false">03 Нет зуба</button>
+          <button class="chip-btn" type="button" data-estimate="braces" aria-pressed="false">04 Исправить прикус</button>
+          <button class="chip-btn" type="button" data-estimate="kids" aria-pressed="false">05 Приём для ребёнка</button>
+          <button class="chip-btn" type="button" data-estimate="hygiene" aria-pressed="false">06 Гигиена и отбеливание</button>
+        </div>
+
+        <div class="estimator-frame">
+          <span class="corner-notch" aria-hidden="true"></span>
+          <div class="estimator-main">
+            <span class="bracket-tag">[ ПЛАН ПЕРВОГО ВИЗИТА ]</span>
+            <h3 class="estimator-title" id="estTitle">Диагностика и лечение кариеса или пульпита</h3>
+            <p class="estimator-desc" id="estDesc">Врач осмотрит зуб, сделает прицельный снимок на радиовизиографе и назовёт точную сумму до начала лечения.</p>
+            <div class="estimator-specs">
+              <div class="spec-row">
+                <span class="spec-key">* ПЕРВЫЙ ШАГ:</span>
+                <span class="spec-val" id="estStep">Бесплатная консультация терапевта</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">* РЕКОМЕНДУЕМ ВРАЧА:</span>
+                <span class="spec-val" id="estDoctor">Герцовская М. В. или Петросян О. В.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="estimator-price-box">
+            <span class="spec-key">ОРИЕНТИР СТОИМОСТИ</span>
             <p class="estimator-price" id="estPrice">от 4 200 ₽</p>
-            <button class="btn btn-primary" type="button" id="estBookBtn">Записаться на этот приём</button>
+            <button class="btn btn-accent btn-full" type="button" id="estBookBtn">Записаться на этот приём <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+
+        <!-- Sharnin AE Stone Materiality Visual + 3 Boxed Guarantee Cards [01]-[03] -->
+        <div class="standards-grid">
+          <figure class="material-frame">
+            <picture>
+              <source srcset="./img/detail-arch.webp 1200w" sizes="(max-width: 960px) 100vw, 420px" type="image/webp">
+              <img src="./img/detail-arch.webp" width="1200" height="900" loading="lazy" alt="Макро-композиция современных керамических коронок и титанового инструмента на тёмном базальтовом камне">
+            </picture>
+            <figcaption class="material-caption">[ МАТЕРИАЛЫ · AB DENTAL · ЛАЗЕР ]</figcaption>
+          </figure>
+
+          <article class="guarantee-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <h3 class="guarantee-title">Фиксация сметы до начала</h3>
+            <p class="guarantee-text">Сначала осмотр и снимок на радиовизиографе, затем понятный расчёт и сроки. Никаких внезапных строк в чеке.</p>
+            <span class="box-idx" aria-hidden="true">[01]</span>
+          </article>
+
+          <article class="guarantee-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <h3 class="guarantee-title">Лазер вместо скальпеля</h3>
+            <p class="guarantee-text">Пластика уздечки и бережная работа с дёснами выполняются стоматологическим лазером без швов и долгого восстановления.</p>
+            <span class="box-idx" aria-hidden="true">[02]</span>
+          </article>
+
+          <article class="guarantee-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <h3 class="guarantee-title">Договор и вычет 13%</h3>
+            <p class="guarantee-text">Официальный пакет документов ООО «Гиппократ» и подготовка справки по форме ФНС для возврата налога.</p>
+            <span class="box-idx" aria-hidden="true">[03]</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: Prices — Light Alabaster + Obys/Sharnin Sticky 35/65 Split -->
+    <section class="section section-light" id="prices">
+      <div class="container">
+        <div class="micro-bar micro-bar-light">
+          <span>03 / ПРАЙС-ЛИСТ</span>
+          <span>ФИНСТОМ_03</span>
+          <span>АКТУАЛЬНЫЕ ТАРИФЫ</span>
+        </div>
+
+        <div class="prices-layout">
+          <div class="prices-rail">
+            <h2 class="rail-heading">
+              <span class="tone-muted">Стоимость</span><br>
+              <span class="tone-strong">основных услуг</span>
+            </h2>
+
+            <div class="price-tabs-vertical" role="tablist" aria-label="Категории прайс-листа">
+              <button class="vtab-btn" type="button" role="tab" aria-selected="true" data-price-tab="therapy">
+                <span><span class="mono-idx">01</span> Терапия и гигиена</span>
+                <span class="vtab-count">6</span>
+              </button>
+              <button class="vtab-btn" type="button" role="tab" aria-selected="false" data-price-tab="surgery">
+                <span><span class="mono-idx">02</span> Хирургия и импланты</span>
+                <span class="vtab-count">5</span>
+              </button>
+              <button class="vtab-btn" type="button" role="tab" aria-selected="false" data-price-tab="ortho">
+                <span><span class="mono-idx">03</span> Протезирование</span>
+                <span class="vtab-count">3</span>
+              </button>
+              <button class="vtab-btn" type="button" role="tab" aria-selected="false" data-price-tab="braces">
+                <span><span class="mono-idx">04</span> Ортодонтия</span>
+                <span class="vtab-count">4</span>
+              </button>
+              <button class="vtab-btn" type="button" role="tab" aria-selected="false" data-price-tab="kids">
+                <span><span class="mono-idx">05</span> Детский приём</span>
+                <span class="vtab-count">3</span>
+              </button>
+            </div>
+
+            <p class="price-note">Точную стоимость врач определяет после осмотра и снимка до начала процедур. Уточнить расчёт можно по телефону <a class="inline-tel" href="tel:+74912276227">+7 (4912) 27-62-27</a>.</p>
+          </div>
+
+          <div class="prices-ledger">
+            <div class="price-panel" role="tabpanel" data-price-panel="therapy">
+              <ul class="price-list">
+                <li class="price-row">
+                  <div class="price-name">Консультация врача-стоматолога</div>
+                  <div class="price-val price-val-free">Бесплатно</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лечение кариеса<span class="price-detail">Сервисные услуги, анестезия, лечение, пломбирование</span></div>
+                  <div class="price-val">от 4 200 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лечение однокорневого пульпита<span class="price-detail">Сервисные услуги, анестезия, обработка канала, пломбирование</span></div>
+                  <div class="price-val">от 9 400 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Ультразвуковое снятие зубных отложений<span class="price-detail">Стоимость указана за 1 зуб</span></div>
+                  <div class="price-val">90 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Полирование зуба<span class="price-detail">Стоимость указана за 1 зуб</span></div>
+                  <div class="price-val">90 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лазерное отбеливание зубов</div>
+                  <div class="price-val">от 28 000 ₽</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="price-panel" role="tabpanel" data-price-panel="surgery" hidden>
+              <ul class="price-list">
+                <li class="price-row">
+                  <div class="price-name">Удаление зуба простое<span class="price-detail">Сервисные услуги, анестезия, удаление, обработка лунки</span></div>
+                  <div class="price-val">от 2 800 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Удаление ретинированного зуба</div>
+                  <div class="price-val">от 7 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лазерная пластика уздечки языка или губ<span class="price-detail">Щадящая процедура без швов</span></div>
+                  <div class="price-val">от 5 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Установка 1 импланта AB Dental (Израиль)</div>
+                  <div class="price-val">от 23 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Протезирование на базе импланта</div>
+                  <div class="price-val">от 38 000 ₽</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="price-panel" role="tabpanel" data-price-panel="ortho" hidden>
+              <ul class="price-list">
+                <li class="price-row">
+                  <div class="price-name">Установка 1 металлокерамической коронки<span class="price-detail">Сервисные услуги, анестезия, снятие слепков, изготовление и фиксация</span></div>
+                  <div class="price-val">от 15 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Съёмный протез из импортной пластмассы</div>
+                  <div class="price-val">от 16 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Съёмный протез из нейлона</div>
+                  <div class="price-val">от 41 000 ₽</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="price-panel" role="tabpanel" data-price-panel="braces" hidden>
+              <ul class="price-list">
+                <li class="price-row">
+                  <div class="price-name">Консультация врача-ортодонта</div>
+                  <div class="price-val">1 200 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лечение съёмной одночелюстной пластиной</div>
+                  <div class="price-val">от 18 500 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Фиксация брекетов на 1 челюсть</div>
+                  <div class="price-val">от 48 000 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Фиксация ретейнера на 6 зубов</div>
+                  <div class="price-val">от 9 400 ₽</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="price-panel" role="tabpanel" data-price-panel="kids" hidden>
+              <ul class="price-list">
+                <li class="price-row">
+                  <div class="price-name">Лечение молочного зуба</div>
+                  <div class="price-val">от 1 800 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Удаление молочного зуба</div>
+                  <div class="price-val">от 1 500 ₽</div>
+                </li>
+                <li class="price-row">
+                  <div class="price-name">Лечение пульпита молочного зуба</div>
+                  <div class="price-val">от 2 800 ₽</div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="prices">
+    <!-- SECTION 04: Doctors — Deep Obsidian Strict 1px Architectural Grid (Sharnin AE Stone Team Grid) -->
+    <section class="section section-dark" id="doctors">
       <div class="container">
-        <h2 class="section-heading">Стоимость основных услуг</h2>
-
-        <div class="price-tabs" role="tablist" aria-label="Категории прайс-листа">
-          <button class="tab-btn" type="button" role="tab" aria-selected="true" data-price-tab="therapy">Терапия и гигиена</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-price-tab="surgery">Хирургия и импланты</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-price-tab="ortho">Протезирование</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-price-tab="braces">Ортодонтия</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-price-tab="kids">Детский приём</button>
+        <div class="micro-bar micro-bar-dark">
+          <span>04 / КОМАНДА</span>
+          <span>ФИНСТОМ_04</span>
+          <span>СТАЖ 20–30 ЛЕТ</span>
         </div>
 
-        <div class="price-panel" role="tabpanel" data-price-panel="therapy">
-          <ul class="price-list">
-            <li class="price-row">
-              <div class="price-name">Консультация врача-стоматолога</div>
-              <div class="price-val">Бесплатно</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лечение кариеса<span class="price-detail">Сервисные услуги, анестезия, лечение, пломбирование</span></div>
-              <div class="price-val">от 4 200 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лечение однокорневого пульпита<span class="price-detail">Сервисные услуги, анестезия, обработка канала, пломбирование</span></div>
-              <div class="price-val">от 9 400 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Ультразвуковое снятие зубных отложений<span class="price-detail">Стоимость указана за 1 зуб</span></div>
-              <div class="price-val">90 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Полирование зуба<span class="price-detail">Стоимость указана за 1 зуб</span></div>
-              <div class="price-val">90 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лазерное отбеливание зубов</div>
-              <div class="price-val">от 28 000 ₽</div>
-            </li>
-          </ul>
+        <div class="statement-split">
+          <p class="statement-caption statement-caption-dark">Постоянный состав.<br>Без текучки кадров.</p>
+          <h2 class="statement-heading">
+            <span class="tone-muted">Врачи, к которым приходят семьями.</span>
+            <span class="tone-strong">Приём ведут специалисты высшей категории и практикующие хирурги-ортопеды.</span>
+          </h2>
         </div>
 
-        <div class="price-panel" role="tabpanel" data-price-panel="surgery" hidden>
-          <ul class="price-list">
-            <li class="price-row">
-              <div class="price-name">Удаление зуба простое<span class="price-detail">Сервисные услуги, анестезия, удаление, обработка лунки</span></div>
-              <div class="price-val">от 2 800 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Удаление ретинированного зуба</div>
-              <div class="price-val">от 7 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лазерная пластика уздечки языка или губ<span class="price-detail">Щадящая процедура без швов</span></div>
-              <div class="price-val">от 5 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Установка 1 импланта AB Dental (Израиль)</div>
-              <div class="price-val">от 23 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Протезирование на базе импланта</div>
-              <div class="price-val">от 38 000 ₽</div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="price-panel" role="tabpanel" data-price-panel="ortho" hidden>
-          <ul class="price-list">
-            <li class="price-row">
-              <div class="price-name">Установка 1 металлокерамической коронки<span class="price-detail">Сервисные услуги, анестезия, снятие слепков, изготовление и фиксация</span></div>
-              <div class="price-val">от 15 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Съёмный протез из импортной пластмассы</div>
-              <div class="price-val">от 16 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Съёмный протез из нейлона</div>
-              <div class="price-val">от 41 000 ₽</div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="price-panel" role="tabpanel" data-price-panel="braces" hidden>
-          <ul class="price-list">
-            <li class="price-row">
-              <div class="price-name">Консультация врача-ортодонта</div>
-              <div class="price-val">1 200 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лечение съёмной одночелюстной пластиной</div>
-              <div class="price-val">от 18 500 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Фиксация брекетов на 1 челюсть</div>
-              <div class="price-val">от 48 000 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Фиксация ретейнера на 6 зубов</div>
-              <div class="price-val">от 9 400 ₽</div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="price-panel" role="tabpanel" data-price-panel="kids" hidden>
-          <ul class="price-list">
-            <li class="price-row">
-              <div class="price-name">Лечение молочного зуба</div>
-              <div class="price-val">от 1 800 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Удаление молочного зуба</div>
-              <div class="price-val">от 1 500 ₽</div>
-            </li>
-            <li class="price-row">
-              <div class="price-name">Лечение пульпита молочного зуба</div>
-              <div class="price-val">от 2 800 ₽</div>
-            </li>
-          </ul>
-        </div>
-
-        <p class="price-note">Точную стоимость лечения врач определяет после осмотра и снимка до начала процедур. Актуальные цены можно также уточнить по телефону +7 (4912) 27-62-27.</p>
-      </div>
-    </section>
-
-    <section class="section" id="doctors">
-      <div class="container">
-        <h2 class="section-heading">Врачи клиники</h2>
         <div class="doctors-grid">
-          <article class="card doctor-card">
-            <div class="doctor-head">
-              <span class="doctor-initials" aria-hidden="true">КН</span>
-              <div>
-                <h3 class="doctor-name">Кузьмина Наталия Анатольевна</h3>
-                <p class="doctor-role">Главный врач, стоматолог-ортодонт</p>
-              </div>
+          <article class="doctor-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="doctor-plaque">
+              <span class="doctor-monogram" aria-hidden="true">КН</span>
+              <span class="doctor-exp">СТАЖ 30+ ЛЕТ</span>
             </div>
-            <p class="doctor-meta">Высшая квалификационная категория, стаж более 30 лет. Окончила МГМСИ в 1984 году, член СТАР Рязанской области и ПОО России.</p>
-            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Кузьмина Наталия Анатольевна" data-book-reason="Ортодонтия">Записаться к врачу</button>
+            <div class="doctor-body">
+              <p class="doctor-role">Главный врач · стоматолог-ортодонт</p>
+              <h3 class="doctor-name">Кузьмина Наталия Анатольевна</h3>
+              <p class="doctor-meta">Высшая квалификационная категория. Окончила МГМСИ в 1984 году, член СТАР Рязанской области и ПОО России.</p>
+            </div>
+            <button class="doctor-cta" type="button" data-book-doctor="Кузьмина Наталия Анатольевна" data-book-reason="Ортодонтия">
+              <span>Записаться к врачу</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
-          <article class="card doctor-card">
-            <div class="doctor-head">
-              <span class="doctor-initials" aria-hidden="true">ГМ</span>
-              <div>
-                <h3 class="doctor-name">Герцовская Марина Владимировна</h3>
-                <p class="doctor-role">Стоматолог-терапевт, хирург</p>
-              </div>
+          <article class="doctor-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="doctor-plaque">
+              <span class="doctor-monogram" aria-hidden="true">ГМ</span>
+              <span class="doctor-exp">СТАЖ 30+ ЛЕТ</span>
             </div>
-            <p class="doctor-meta">Опыт работы более 30 лет. Окончила стоматологический факультет Минского государственного медицинского института в 1986 году.</p>
-            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Герцовская Марина Владимировна" data-book-reason="Лечение зуба или гигиена">Записаться к врачу</button>
+            <div class="doctor-body">
+              <p class="doctor-role">Стоматолог-терапевт · хирург</p>
+              <h3 class="doctor-name">Герцовская Марина Владимировна</h3>
+              <p class="doctor-meta">Опыт работы более 30 лет. Окончила стоматологический факультет Минского государственного медицинского института в 1986 году.</p>
+            </div>
+            <button class="doctor-cta" type="button" data-book-doctor="Герцовская Марина Владимировна" data-book-reason="Лечение зуба или гигиена">
+              <span>Записаться к врачу</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
-          <article class="card doctor-card">
-            <div class="doctor-head">
-              <span class="doctor-initials" aria-hidden="true">ПО</span>
-              <div>
-                <h3 class="doctor-name">Петросян Оксана Викторовна</h3>
-                <p class="doctor-role">Стоматолог-терапевт, ортопед</p>
-              </div>
+          <article class="doctor-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="doctor-plaque">
+              <span class="doctor-monogram" aria-hidden="true">ПО</span>
+              <span class="doctor-exp">СТАЖ 20+ ЛЕТ</span>
             </div>
-            <p class="doctor-meta">Опыт работы более 20 лет. Окончила Хабаровский государственный медицинский институт в 1994 году, повышала квалификацию в Санкт-Петербурге.</p>
-            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Петросян Оксана Викторовна" data-book-reason="Лечение зуба или гигиена">Записаться к врачу</button>
+            <div class="doctor-body">
+              <p class="doctor-role">Стоматолог-терапевт · ортопед</p>
+              <h3 class="doctor-name">Петросян Оксана Викторовна</h3>
+              <p class="doctor-meta">Опыт работы более 20 лет. Окончила Хабаровский государственный медицинский институт в 1994 году, повышала квалификацию в Санкт-Петербурге.</p>
+            </div>
+            <button class="doctor-cta" type="button" data-book-doctor="Петросян Оксана Викторовна" data-book-reason="Лечение зуба или гигиена">
+              <span>Записаться к врачу</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
-          <article class="card doctor-card">
-            <div class="doctor-head">
-              <span class="doctor-initials" aria-hidden="true">ПЕ</span>
-              <div>
-                <h3 class="doctor-name">Пономарёв Евгений Олегович</h3>
-                <p class="doctor-role">Стоматолог-ортопед, хирург</p>
-              </div>
+          <article class="doctor-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="doctor-plaque">
+              <span class="doctor-monogram" aria-hidden="true">ПЕ</span>
+              <span class="doctor-exp">ИМПЛАНТОЛОГ</span>
             </div>
-            <p class="doctor-meta">Окончил РязГМУ в 2013 году. Специализируется на протезировании на имплантах и лазерной хирургии, автор научных статей и патентов.</p>
-            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Пономарёв Евгений Олегович" data-book-reason="Имплантация и протезирование">Записаться к врачу</button>
+            <div class="doctor-body">
+              <p class="doctor-role">Стоматолог-ортопед · хирург</p>
+              <h3 class="doctor-name">Пономарёв Евгений Олегович</h3>
+              <p class="doctor-meta">Окончил РязГМУ в 2013 году. Специализируется на протезировании на имплантах AB Dental и лазерной хирургии, автор научных статей и патентов.</p>
+            </div>
+            <button class="doctor-cta" type="button" data-book-doctor="Пономарёв Евгений Олегович" data-book-reason="Имплантация и протезирование">
+              <span>Записаться к врачу</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
-          <article class="card doctor-card">
-            <div class="doctor-head">
-              <span class="doctor-initials" aria-hidden="true">ЗТ</span>
-              <div>
-                <h3 class="doctor-name">Захарова Татьяна Николаевна</h3>
-                <p class="doctor-role">Зубной врач</p>
-              </div>
+          <article class="doctor-cell">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="doctor-plaque">
+              <span class="doctor-monogram" aria-hidden="true">ЗТ</span>
+              <span class="doctor-exp">СТАЖ 30+ ЛЕТ</span>
             </div>
-            <p class="doctor-meta">Опыт работы более 30 лет. Окончила Рязанский медицинский колледж в 1994 году по специальности стоматология.</p>
-            <button class="btn btn-secondary doctor-book-btn" type="button" data-book-doctor="Захарова Татьяна Николаевна" data-book-reason="Консультация терапевта">Записаться к врачу</button>
+            <div class="doctor-body">
+              <p class="doctor-role">Зубной врач · терапия</p>
+              <h3 class="doctor-name">Захарова Татьяна Николаевна</h3>
+              <p class="doctor-meta">Опыт работы более 30 лет. Окончила Рязанский медицинский колледж в 1994 году по специальности стоматология.</p>
+            </div>
+            <button class="doctor-cta" type="button" data-book-doctor="Захарова Татьяна Николаевна" data-book-reason="Консультация терапевта">
+              <span>Записаться к врачу</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <article class="doctor-cell doctor-cell-feature">
+            <figure class="lounge-thumb">
+              <picture>
+                <source srcset="./img/clinic-hero.webp 1200w" sizes="(max-width: 960px) 100vw, 380px" type="image/webp">
+                <img src="./img/clinic-hero.webp" width="1200" height="900" loading="lazy" alt="Светлая зона ожидания стоматологической клиники со скандинавской отделкой из дерева и камня">
+              </picture>
+            </figure>
+            <div class="doctor-body">
+              <p class="doctor-role">ПЕРВЫЙ ВИЗИТ · 0 ₽</p>
+              <h3 class="doctor-name">Не знаете, с какого специалиста начать?</h3>
+              <p class="doctor-meta">Запишитесь на бесплатную консультацию терапевта: проведём осмотр и составим маршрут лечения.</p>
+            </div>
+            <button class="doctor-cta doctor-cta-accent" type="button" data-book-doctor="Любой свободный врач" data-book-reason="Консультация терапевта">
+              <span>Подобрать специалиста</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contacts">
-      <div class="container contact-grid">
-        <div>
-          <h2 class="section-heading">Контакты и адрес</h2>
-          <ul class="contact-list">
-            <li>
-              <span class="contact-label">Адрес клиники</span>
-              <span class="contact-value">390005, г. Рязань, ул. Дзержинского, д. 59, корп. 3</span>
-            </li>
-            <li>
-              <span class="contact-label">Режим работы</span>
-              <span class="contact-value">Понедельник–пятница 9:00–20:00, суббота 9:00–15:00</span>
-              <span class="hours-state" id="clinicHoursState"></span>
-            </li>
-            <li>
-              <span class="contact-label">Телефоны для записи</span>
-              <div class="contact-value">
-                <a class="contact-link" href="tel:+74912276227">+7 (4912) 27-62-27</a>,
-                <a class="contact-link" href="tel:+79209996227">+7 (920) 999-62-27</a>
-              </div>
-            </li>
-            <li>
-              <span class="contact-label">Электронная почта</span>
-              <a class="contact-value contact-link" href="mailto:finstom@yandex.ru">finstom@yandex.ru</a>
-            </li>
-          </ul>
-
-          <div class="contact-actions">
-            <a class="btn btn-secondary" href="https://yandex.ru/maps/11/ryazan/?text=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2059" target="_blank" rel="noopener noreferrer">
-              Открыть на Яндекс.Картах ↗
-            </a>
-            <button class="btn btn-secondary" type="button" data-open-dialog="taxDialog">Справка на налоговый вычет 13%</button>
-          </div>
+    <!-- SECTION 05: Conversion Split (Sharnin AE Stone Solid Accent Block + Live Smartphone 24/7 Bot) + Obys Contacts Directory -->
+    <section class="section section-light" id="contacts">
+      <div class="container">
+        <div class="micro-bar micro-bar-light">
+          <span>05 / ЗАПИСЬ И КОНТАКТЫ</span>
+          <span>ФИНСТОМ_05</span>
+          <span>ОНЛАЙН 24/7</span>
         </div>
 
-        <div class="card" id="booking">
-          <h2 class="section-heading">Запись на приём</h2>
-          <div class="booking-tabs" role="tablist" aria-label="Способ записи">
-            <button class="tab-btn" type="button" role="tab" aria-selected="true" data-booking-tab="form">Форма на сайте</button>
-            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-booking-tab="bot">Бот записи 24/7</button>
-          </div>
+        <div class="conversion-split" id="booking">
+          <!-- Solid Accent Form Block (Sharnin AE Stone Conversion Card) -->
+          <div class="accent-form-card">
+            <span class="accent-kicker">[ ЗАПИСЬ БЕЗ ОЖИДАНИЯ ]</span>
+            <h2 class="accent-heading">Оставьте заявку на приём в клинику</h2>
+            <p class="accent-lead">Администратор подберёт ближайшее окошко и подтвердит время визита по телефону.</p>
 
-          <div class="booking-panel" role="tabpanel" data-booking-panel="form">
             <form class="booking-form" id="bookingForm" method="post">
-              <div class="field-group">
-                <label class="field-label" for="patientName">Ваше имя</label>
-                <input class="field-input" id="patientName" name="name" type="text" autocomplete="name" required>
+              <div class="form-row-2">
+                <div class="field-group">
+                  <label class="field-label" for="patientName">Ваше имя</label>
+                  <input class="field-input" id="patientName" name="name" type="text" autocomplete="name" placeholder="Анна" required>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="patientPhone">Телефон для связи</label>
+                  <input class="field-input" id="patientPhone" name="tel" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+                </div>
               </div>
 
-              <div class="field-group">
-                <label class="field-label" for="patientPhone">Телефон для связи</label>
-                <input class="field-input" id="patientPhone" name="tel" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
-              </div>
-
-              <div class="field-group">
-                <label class="field-label" for="patientReason">Повод обращения</label>
-                <select class="field-input" id="patientReason" name="reason">
-                  <option value="Консультация терапевта">Бесплатная консультация стоматолога-терапевта</option>
-                  <option value="Лечение зуба или гигиена">Лечение зуба или гигиена</option>
-                  <option value="Имплантация и протезирование">Имплантация или протезирование</option>
-                  <option value="Ортодонтия">Консультация ортодонта</option>
-                  <option value="Детский приём">Детский приём</option>
-                </select>
-              </div>
-
-              <div class="field-group">
-                <label class="field-label" for="patientDoctor">Специалист</label>
-                <select class="field-input" id="patientDoctor" name="doctor">
-                  <option value="Любой свободный врач">Любой свободный врач</option>
-                  <option value="Кузьмина Наталия Анатольевна">Кузьмина Наталия Анатольевна (ортодонт)</option>
-                  <option value="Герцовская Марина Владимировна">Герцовская Марина Владимировна (терапевт, хирург)</option>
-                  <option value="Петросян Оксана Викторовна">Петросян Оксана Викторовна (терапевт, ортопед)</option>
-                  <option value="Пономарёв Евгений Олегович">Пономарёв Евгений Олегович (ортопед, хирург)</option>
-                  <option value="Захарова Татьяна Николаевна">Захарова Татьяна Николаевна (зубной врач)</option>
-                </select>
+              <div class="form-row-2">
+                <div class="field-group">
+                  <label class="field-label" for="patientReason">Повод обращения</label>
+                  <select class="field-input" id="patientReason" name="reason">
+                    <option value="Консультация терапевта">Бесплатная консультация терапевта</option>
+                    <option value="Лечение зуба или гигиена">Лечение зуба или гигиена</option>
+                    <option value="Имплантация и протезирование">Имплантация или протезирование</option>
+                    <option value="Ортодонтия">Консультация ортодонта</option>
+                    <option value="Детский приём">Детский приём</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="patientDoctor">Специалист</label>
+                  <select class="field-input" id="patientDoctor" name="doctor">
+                    <option value="Любой свободный врач">Любой свободный врач</option>
+                    <option value="Кузьмина Наталия Анатольевна">Кузьмина Н. А. (ортодонт)</option>
+                    <option value="Герцовская Марина Владимировна">Герцовская М. В. (терапевт, хирург)</option>
+                    <option value="Петросян Оксана Викторовна">Петросян О. В. (терапевт, ортопед)</option>
+                    <option value="Пономарёв Евгений Олегович">Пономарёв Е. О. (ортопед, хирург)</option>
+                    <option value="Захарова Татьяна Николаевна">Захарова Т. Н. (зубной врач)</option>
+                  </select>
+                </div>
               </div>
 
               <label class="consent-row" for="consentCheck">
                 <input id="consentCheck" type="checkbox" required>
                 <span>
-                  Я даю <button class="inline-link-btn" type="button" data-open-dialog="consentDialog">согласие на обработку персональных данных</button> и ознакомлен с <button class="inline-link-btn" type="button" data-open-dialog="privacyDialog">Политикой обработки ПДн</button>.
+                  Я даю <button class="inline-link-btn inline-link-light" type="button" data-open-dialog="consentDialog">согласие на обработку ПДн</button> и ознакомлен с <button class="inline-link-btn inline-link-light" type="button" data-open-dialog="privacyDialog">Политикой обработки ПДн</button>.
                 </span>
               </label>
 
-              <button class="btn btn-primary" type="submit">Отправить заявку на приём</button>
+              <button class="btn btn-white btn-full" type="submit">Отправить заявку на приём <span aria-hidden="true">↗</span></button>
               <p class="form-status" id="formStatus" role="status" hidden></p>
             </form>
+
+            <div class="accent-card-foot">
+              <div>
+                <span class="accent-foot-num">0 ₽</span>
+                <span class="accent-foot-lbl">первичная консультация терапевта</span>
+              </div>
+              <div>
+                <span class="accent-foot-num">152-ФЗ</span>
+                <span class="accent-foot-lbl">данные хранятся на серверах в РФ</span>
+              </div>
+            </div>
           </div>
 
-          <div class="booking-panel" role="tabpanel" data-booking-panel="bot" hidden>
-            <div class="bot-dialog" id="botDialog" aria-live="polite"></div>
-            <div id="botControls"></div>
-            <p class="bot-note">Бот принимает записи круглосуточно на сайте и во ВКонтакте, проверяет согласие по 152-ФЗ, напоминает пациенту о визите за 24 часа и передаёт карточку администратору.</p>
+          <!-- Dark Obsidian Panel with Live Interactive Smartphone 24/7 Bot (Site + VK only) -->
+          <div class="bot-showcase-card">
+            <span class="corner-notch" aria-hidden="true"></span>
+            <div class="bot-showcase-head">
+              <div>
+                <span class="bracket-tag">[ АВТОЗАПИСЬ 24/7 ]</span>
+                <h3 class="bot-showcase-title">Бот записи на сайте и во ВКонтакте</h3>
+              </div>
+              <span class="bot-online-badge"><span class="live-dot live-dot-on" aria-hidden="true"></span>ONLINE</span>
+            </div>
+
+            <div class="phone-frame">
+              <div class="phone-topbar" aria-hidden="true">
+                <span class="phone-brand" data-brand-name>Финская стоматология</span>
+                <span class="phone-notch"></span>
+                <span class="phone-channel">Сайт · ВК</span>
+              </div>
+              <div class="bot-dialog" id="botDialog" aria-live="polite"></div>
+              <div class="bot-controls-wrap" id="botControls"></div>
+            </div>
+
+            <p class="bot-note">Принимает обращения вечером и в выходные на сайте и во ВКонтакте, фиксирует согласие по 152-ФЗ, напоминает о визите за 24 часа и передаёт карточку администратору.</p>
+          </div>
+        </div>
+
+        <!-- Obys-style Swiss Unbordered Metadata Directory for Contacts -->
+        <div class="contacts-directory">
+          <div class="dir-col">
+            <span class="dir-label">Адрес клиники:</span>
+            <p class="dir-value">390005, г. Рязань,<br>ул. Дзержинского, д. 59, корп. 3</p>
+            <a class="dir-link" href="https://yandex.ru/maps/11/ryazan/?text=%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%8C%20%D0%94%D0%B7%D0%B5%D1%80%D0%B6%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2059" target="_blank" rel="noopener noreferrer">Открыть на Яндекс.Картах ↗</a>
+          </div>
+
+          <div class="dir-col">
+            <span class="dir-label">Режим работы:</span>
+            <p class="dir-value">Пн–Пт 9:00–20:00<br>Сб 9:00–15:00 · Вс выходной</p>
+            <span class="hours-state" id="clinicHoursState"></span>
+          </div>
+
+          <div class="dir-col">
+            <span class="dir-label">Телефоны для записи:</span>
+            <p class="dir-value">
+              <a class="dir-tel" href="tel:+74912276227">+7 (4912) 27-62-27</a><br>
+              <a class="dir-tel" href="tel:+79209996227">+7 (920) 999-62-27</a>
+            </p>
+          </div>
+
+          <div class="dir-col">
+            <span class="dir-label">Почта и документы:</span>
+            <p class="dir-value"><a class="dir-tel" href="mailto:finstom@yandex.ru">finstom@yandex.ru</a></p>
+            <button class="dir-link dir-link-btn" type="button" data-open-dialog="taxDialog">Справка на налоговый вычет 13% ↗</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- MONUMENTAL ARCHITECTURAL FOOTER (Only.digital + AE Stone) -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-top">
-        <div>
-          <strong data-brand-name>Финская стоматология</strong> · ООО «Гиппократ» · г. Рязань, ул. Дзержинского, д. 59, корп. 3
+      <div class="footer-wordmark-row">
+        <p class="footer-wordmark" data-brand-name>Финская стоматология</p>
+        <a class="btn btn-accent" href="#booking">Записаться на приём <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="footer-micro">ОПЕРАТОР И РЕКВИЗИТЫ</span>
+          <p class="footer-text">ООО «Гиппократ» · г. Рязань, ул. Дзержинского, д. 59, корп. 3<br>ИНН 6234058134 · ОГРН 1086234009377 · Исп. директор Селиванова В. Г.</p>
         </div>
-        <div class="footer-links">
-          <button class="inline-link-btn" type="button" data-open-dialog="requisitesDialog">Реквизиты ООО «Гиппократ»</button>
-          <a class="contact-link" href="./privacy.html">Политика обработки ПДн</a>
-          <button class="inline-link-btn" type="button" data-open-dialog="consentDialog">Согласие на ПДн</button>
+
+        <div class="footer-col">
+          <span class="footer-micro">ДОКУМЕНТЫ И 152-ФЗ</span>
+          <div class="footer-links">
+            <button class="footer-link-btn" type="button" data-open-dialog="requisitesDialog">Реквизиты ООО «Гиппократ»</button>
+            <a class="footer-link" href="./privacy.html">Политика обработки ПДн</a>
+            <button class="footer-link-btn" type="button" data-open-dialog="consentDialog">Согласие на ПДн</button>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-micro">СВЯЗЬ С КЛИНИКОЙ</span>
+          <p class="footer-contacts">
+            <a href="tel:+74912276227">+7 (4912) 27-62-27</a><br>
+            <a href="mailto:finstom@yandex.ru">finstom@yandex.ru</a>
+          </p>
         </div>
       </div>
-      <div class="footer-legal">
-        <span>ИНН 6234058134 · ОГРН 1086234009377 · Исполнительный директор Селиванова В. Г.</span>
+
+      <div class="footer-bottom">
         <span>Имеются противопоказания, необходимо проконсультироваться со специалистом.</span>
+        <span>Работает на серверах в РФ · без зарубежных трекеров</span>
       </div>
     </div>
   </footer>
 
+  <!-- Cookie banner -->
   <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление о cookie" hidden>
     <p class="cookie-text">Технические cookie для работы настроек сайта без зарубежных трекеров.</p>
     <div class="cookie-actions">
-      <button class="btn btn-primary" type="button" data-cookie-choice="accepted">Принять</button>
-      <button class="btn btn-secondary" type="button" data-cookie-choice="essential">Закрыть</button>
+      <button class="btn btn-accent btn-sm" type="button" data-cookie-choice="accepted">Принять</button>
+      <button class="btn btn-ghost-light btn-sm" type="button" data-cookie-choice="essential">Закрыть</button>
     </div>
   </div>
 
+  <!-- Live brand name preview studio -->
   <div class="brand-studio">
     <div class="brand-panel" id="brandStudioPanel" hidden>
       <div class="brand-panel-head">
@@ -518,15 +929,17 @@
         <button class="preset-btn" type="button" data-brand-preset="Дзержинского, 59" aria-pressed="false">Дзержинского, 59</button>
       </div>
       <div class="field-group">
-        <label class="field-label" for="customBrandInput">Свой вариант названия</label>
-        <input class="field-input" id="customBrandInput" type="text" placeholder="Введите название">
+        <label class="field-label field-label-dark" for="customBrandInput">Свой вариант названия</label>
+        <input class="field-input field-input-dark" id="customBrandInput" type="text" placeholder="Введите название">
       </div>
     </div>
     <button class="brand-trigger" id="brandStudioTrigger" type="button" aria-expanded="false" aria-controls="brandStudioPanel">
+      <span class="trigger-dot" aria-hidden="true"></span>
       Примерить название
     </button>
   </div>
 
+  <!-- Native legal & tax dialogs -->
   <dialog class="legal-dialog" id="privacyDialog" aria-labelledby="privacyTitle">
     <div class="dialog-head">
       <h2 class="dialog-title" id="privacyTitle">Политика обработки персональных данных</h2>
@@ -561,27 +974,27 @@
     </div>
     <form class="booking-form" id="taxForm" method="post">
       <div class="field-group">
-        <label class="field-label" for="taxPatientName">ФИО налогоплательщика</label>
-        <input class="field-input" id="taxPatientName" name="tax_name" type="text" required>
+        <label class="field-label field-label-light" for="taxPatientName">ФИО налогоплательщика</label>
+        <input class="field-input field-input-light" id="taxPatientName" name="tax_name" type="text" required>
       </div>
       <div class="field-group">
-        <label class="field-label" for="taxPhone">Телефон для уведомления о готовности</label>
-        <input class="field-input" id="taxPhone" name="tax_phone" type="tel" placeholder="+7 (900) 000-00-00" required>
+        <label class="field-label field-label-light" for="taxPhone">Телефон для уведомления о готовности</label>
+        <input class="field-input field-input-light" id="taxPhone" name="tax_phone" type="tel" placeholder="+7 (900) 000-00-00" required>
       </div>
       <div class="field-group">
-        <label class="field-label" for="taxYear">Год оплаты лечения</label>
-        <select class="field-input" id="taxYear" name="tax_year">
+        <label class="field-label field-label-light" for="taxYear">Год оплаты лечения</label>
+        <select class="field-input field-input-light" id="taxYear" name="tax_year">
           <option value="2026">2026</option>
           <option value="2025">2025</option>
           <option value="2024">2024</option>
         </select>
       </div>
-      <label class="consent-row" for="taxConsentCheck">
+      <label class="consent-row consent-row-light" for="taxConsentCheck">
         <input id="taxConsentCheck" type="checkbox" required>
         <span>Я даю согласие ООО «Гиппократ» на обработку данных для подготовки справки по форме ФНС.</span>
       </label>
-      <button class="btn btn-primary" type="submit">Запросить справку</button>
-      <p class="form-status" id="taxStatus" role="status" hidden></p>
+      <button class="btn btn-accent btn-full" type="submit">Запросить справку ↗</button>
+      <p class="form-status form-status-light" id="taxStatus" role="status" hidden></p>
     </form>
   </dialog>
 

@@ -29,7 +29,12 @@
     document.documentElement.classList.toggle("a11y-large", enabled);
     a11yButtons.forEach(function (btn) {
       btn.setAttribute("aria-pressed", String(enabled));
-      btn.textContent = enabled ? "Обычная версия" : "Версия для слабовидящих";
+      var lbl = btn.querySelector(".a11y-label");
+      if (lbl) {
+        lbl.textContent = enabled ? "Обычная" : "Слабовидящим";
+      } else {
+        btn.textContent = enabled ? "Обычная версия" : "Версия для слабовидящих";
+      }
     });
     try {
       localStorage.setItem(A11Y_KEY, enabled ? "1" : "0");
@@ -47,7 +52,30 @@
     });
   });
 
-  // 3. Price tabs
+  // 3. Only.digital 50/50 Expandable Service Accordions
+  var accItems = document.querySelectorAll("[data-acc-item]");
+  accItems.forEach(function (item) {
+    var trigger = item.querySelector(".acc-trigger");
+    var panel = item.querySelector(".acc-panel");
+    if (!trigger || !panel) return;
+    trigger.addEventListener("click", function () {
+      var isOpen = item.classList.contains("is-open");
+      accItems.forEach(function (other) {
+        other.classList.remove("is-open");
+        var ot = other.querySelector(".acc-trigger");
+        var op = other.querySelector(".acc-panel");
+        if (ot) ot.setAttribute("aria-expanded", "false");
+        if (op) op.hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add("is-open");
+        trigger.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+    });
+  });
+
+  // 4. Price tabs
   var tabButtons = document.querySelectorAll("[data-price-tab]");
   var tabPanels = document.querySelectorAll("[data-price-panel]");
   tabButtons.forEach(function (btn) {
@@ -62,15 +90,13 @@
     });
   });
 
-  // 4. Booking form demo confirmation (no third-party transfer)
+  // 5. Booking form & doctor pre-fill
   var bookingForm = document.getElementById("bookingForm");
   var formStatus = document.getElementById("formStatus");
   var reasonSelect = document.getElementById("patientReason");
   var doctorSelect = document.getElementById("patientDoctor");
 
   function openBookingFormWith(reason, doctor) {
-    var formTab = document.querySelector('[data-booking-tab="form"]');
-    if (formTab) formTab.click();
     if (reasonSelect && reason) reasonSelect.value = reason;
     if (doctorSelect && doctor) doctorSelect.value = doctor;
     var bookingCard = document.getElementById("booking");
@@ -99,13 +125,13 @@
     });
   }
 
-  // 4b. Price estimator
+  // 6. Architectural Price Estimator
   var ESTIMATES = {
     pain: {
       title: "Диагностика и лечение кариеса или пульпита",
       desc: "Врач осмотрит зуб, сделает прицельный снимок на радиовизиографе и назовёт точную сумму до начала лечения.",
-      step: "Первый шаг: бесплатная консультация терапевта",
-      doctorText: "Рекомендуем: Герцовская М. В. или Петросян О. В.",
+      step: "Бесплатная консультация терапевта",
+      doctorText: "Герцовская М. В. или Петросян О. В.",
       price: "от 4 200 ₽",
       reason: "Лечение зуба или гигиена",
       doctor: "Герцовская Марина Владимировна"
@@ -113,8 +139,8 @@
     filling: {
       title: "Восстановление зуба и реставрация",
       desc: "Снятие старого материала, обработка полости с анестезией и анатомическая реставрация современными материалами.",
-      step: "Первый шаг: бесплатная консультация терапевта",
-      doctorText: "Рекомендуем: Петросян О. В. или Захарова Т. Н.",
+      step: "Бесплатная консультация терапевта",
+      doctorText: "Петросян О. В. или Захарова Т. Н.",
       price: "от 4 200 ₽",
       reason: "Лечение зуба или гигиена",
       doctor: "Петросян Оксана Викторовна"
@@ -122,8 +148,8 @@
     implant: {
       title: "Имплантация AB Dental и протезирование",
       desc: "Подбираем имплант или коронку под клиническую ситуацию и заранее расписываем этапы и стоимость.",
-      step: "Первый шаг: осмотр хирурга-ортопеда и план",
-      doctorText: "Рекомендуем: Пономарёв Е. О.",
+      step: "Осмотр хирурга-ортопеда и пошаговый план",
+      doctorText: "Пономарёв Е. О.",
       price: "от 23 000 ₽",
       reason: "Имплантация и протезирование",
       doctor: "Пономарёв Евгений Олегович"
@@ -131,8 +157,8 @@
     braces: {
       title: "Исправление прикуса у детей и взрослых",
       desc: "Оценка прикуса, подбор пластин или брекет-системы и понятный график посещений ортодонта.",
-      step: "Консультация врача-ортодонта: 1 200 ₽",
-      doctorText: "Рекомендуем: Кузьмина Н. А. (стаж более 30 лет)",
+      step: "Консультация врача-ортодонта (1 200 ₽)",
+      doctorText: "Кузьмина Н. А. (стаж более 30 лет)",
       price: "от 18 500 ₽",
       reason: "Ортодонтия",
       doctor: "Кузьмина Наталия Анатольевна"
@@ -140,8 +166,8 @@
     kids: {
       title: "Бережный детский приём",
       desc: "Спокойное лечение молочных и постоянных зубов, а также бескровная лазерная пластика уздечки без швов.",
-      step: "Первый шаг: знакомство с врачом и осмотр",
-      doctorText: "Рекомендуем: детские терапевты клиники",
+      step: "Знакомство с врачом и мягкий осмотр",
+      doctorText: "Детские терапевты клиники",
       price: "от 1 800 ₽",
       reason: "Детский приём",
       doctor: "Любой свободный врач"
@@ -149,13 +175,14 @@
     hygiene: {
       title: "Профессиональная гигиена и лазерное отбеливание",
       desc: "Ультразвуковое снятие отложений (90 ₽ за зуб), полирование эмали (90 ₽ за зуб) или лазерное отбеливание.",
-      step: "Первый шаг: бесплатная консультация терапевта",
-      doctorText: "Рекомендуем: Герцовская М. В. или Захарова Т. Н.",
+      step: "Бесплатная консультация терапевта",
+      doctorText: "Герцовская М. В. или Захарова Т. Н.",
       price: "от 90 ₽ / зуб",
       reason: "Лечение зуба или гигиена",
       doctor: "Захарова Татьяна Николаевна"
     }
   };
+
   var activeEstimateKey = "pain";
   var estButtons = document.querySelectorAll("[data-estimate]");
   var estTitle = document.getElementById("estTitle");
@@ -189,7 +216,7 @@
     });
   }
 
-  // 4c. Doctor-specific booking buttons
+  // Doctor & Service CTA pre-fill
   document.querySelectorAll("[data-book-doctor]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       openBookingFormWith(
@@ -199,22 +226,7 @@
     });
   });
 
-  // 4d. Booking tabs (Form vs 24/7 Bot simulator)
-  var bookingTabs = document.querySelectorAll("[data-booking-tab]");
-  var bookingPanels = document.querySelectorAll("[data-booking-panel]");
-  bookingTabs.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var target = btn.getAttribute("data-booking-tab");
-      bookingTabs.forEach(function (b) {
-        b.setAttribute("aria-selected", String(b === btn));
-      });
-      bookingPanels.forEach(function (p) {
-        p.hidden = p.getAttribute("data-booking-panel") !== target;
-      });
-    });
-  });
-
-  // 4e. Interactive 3-step booking bot preview
+  // 7. Interactive 3-step 24/7 Booking Bot (Site + VK only)
   var botDialog = document.getElementById("botDialog");
   var botControls = document.getElementById("botControls");
   var botState = { step: 1, service: "", slot: "", phone: "" };
@@ -236,10 +248,10 @@
     if (botState.step === 1) {
       var wrap1 = document.createElement("div");
       wrap1.className = "bot-choices";
-      ["Терапия и гигиена", "Имплантация и протезирование", "Ортодонтия", "Детский приём"].forEach(function (srv) {
+      ["Терапия и гигиена", "Имплантация", "Ортодонтия", "Детский приём"].forEach(function (srv) {
         var b = document.createElement("button");
         b.type = "button";
-        b.className = "tab-btn";
+        b.className = "bot-chip";
         b.textContent = srv;
         b.addEventListener("click", function () {
           botState.service = srv;
@@ -261,7 +273,7 @@
       ["Утро 9:00–13:00", "День 13:00–17:00", "Вечер 17:00–20:00", "Суббота 9:00–15:00"].forEach(function (slot) {
         var b = document.createElement("button");
         b.type = "button";
-        b.className = "tab-btn";
+        b.className = "bot-chip";
         b.textContent = slot;
         b.addEventListener("click", function () {
           botState.slot = slot;
@@ -275,7 +287,7 @@
     }
 
     addMsg(botState.slot, true);
-    addMsg("Укажите телефон для подтверждения окошка и напоминания за сутки до приёма:", false);
+    addMsg("Укажите номер для подтверждения окошка и напоминания за 24 часа:", false);
 
     if (botState.step === 3) {
       var form = document.createElement("form");
@@ -283,16 +295,16 @@
       form.method = "post";
       form.innerHTML =
         '<div class="field-group">' +
-        '<label class="field-label" for="botPhoneInput">Телефон для связи</label>' +
-        '<input class="field-input" id="botPhoneInput" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>' +
+        '<label class="field-label field-label-dark" for="botPhoneInput">Телефон для связи</label>' +
+        '<input class="field-input field-input-dark" id="botPhoneInput" type="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>' +
         "</div>" +
         '<label class="consent-row" for="botConsentCheck">' +
         '<input id="botConsentCheck" type="checkbox" required>' +
-        "<span>Согласен на обработку номера телефона для записи в клинику по 152-ФЗ.</span>" +
+        "<span>Согласен на обработку номера телефона для записи по 152-ФЗ.</span>" +
         "</label>" +
         '<div class="bot-choices">' +
-        '<button class="btn btn-primary" type="submit">Подтвердить запись в боте</button>' +
-        '<button class="btn btn-secondary" type="button" id="botResetBtn">Выбрать заново</button>' +
+        '<button class="btn btn-accent btn-sm" type="submit">Подтвердить запись ↗</button>' +
+        '<button class="btn btn-ghost-light btn-sm" type="button" id="botResetBtn">Сбросить</button>' +
         "</div>";
       form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -323,7 +335,7 @@
     );
     var againBtn = document.createElement("button");
     againBtn.type = "button";
-    againBtn.className = "btn btn-secondary";
+    againBtn.className = "btn btn-ghost-light btn-sm";
     againBtn.textContent = "Пройти сценарий ещё раз";
     againBtn.addEventListener("click", function () {
       botState = { step: 1, service: "", slot: "", phone: "" };
@@ -333,26 +345,45 @@
   }
   renderBot();
 
-  // 4f. Real Moscow working hours status
+  // 8. Live Moscow clock in top bar (Obys signature) + Working hours status
   var hoursNode = document.getElementById("clinicHoursState");
-  if (hoursNode) {
+  var clockText = document.getElementById("headerClockText");
+  var liveDot = document.getElementById("headerLiveDot");
+
+  function updateMoscowClock() {
     try {
       var nowMsk = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
       var day = nowMsk.getDay();
+      var hh = String(nowMsk.getHours()).padStart(2, "0");
+      var mm = String(nowMsk.getMinutes()).padStart(2, "0");
       var mins = nowMsk.getHours() * 60 + nowMsk.getMinutes();
-      if (day >= 1 && day <= 5 && mins >= 540 && mins < 1200) {
-        hoursNode.textContent = "Сейчас клиника открыта до 20:00";
-      } else if (day === 6 && mins >= 540 && mins < 900) {
-        hoursNode.textContent = "Сейчас клиника открыта до 15:00";
-      } else if (day === 0 || (day === 6 && mins >= 900)) {
-        hoursNode.textContent = "Сейчас закрыто, ближайший приём в понедельник с 9:00";
-      } else {
-        hoursNode.textContent = "Сейчас закрыто, приём начинается в 9:00";
+      var isOpenWeekday = day >= 1 && day <= 5 && mins >= 540 && mins < 1200;
+      var isOpenSat = day === 6 && mins >= 540 && mins < 900;
+      var isOpen = isOpenWeekday || isOpenSat;
+
+      if (clockText) {
+        clockText.textContent = "MSK " + hh + ":" + mm + " · " + (isOpen ? "ОТКРЫТО" : "ЗАКРЫТО");
+      }
+      if (liveDot) {
+        liveDot.classList.toggle("live-dot-on", isOpen);
+      }
+      if (hoursNode) {
+        if (isOpenWeekday) {
+          hoursNode.textContent = "Сейчас открыто до 20:00";
+        } else if (isOpenSat) {
+          hoursNode.textContent = "Сейчас открыто до 15:00";
+        } else if (day === 0 || (day === 6 && mins >= 900)) {
+          hoursNode.textContent = "Сейчас закрыто · ближайший приём в понедельник с 9:00";
+        } else {
+          hoursNode.textContent = "Сейчас закрыто · приём начинается в 9:00";
+        }
       }
     } catch (e) {}
   }
+  updateMoscowClock();
+  setInterval(updateMoscowClock, 30000);
 
-  // 4g. Tax deduction certificate demo form
+  // 9. Tax deduction certificate demo form
   var taxForm = document.getElementById("taxForm");
   var taxStatus = document.getElementById("taxStatus");
   if (taxForm && taxStatus) {
@@ -368,7 +399,7 @@
     });
   }
 
-  // 5. Cookie consent banner
+  // 10. Cookie consent banner
   var cookieBanner = document.getElementById("cookieBanner");
   if (cookieBanner) {
     try {
@@ -389,7 +420,7 @@
     });
   }
 
-  // 6. Legal modals
+  // 11. Native legal dialogs
   document.querySelectorAll("[data-open-dialog]").forEach(function (trigger) {
     trigger.addEventListener("click", function () {
       var dialog = document.getElementById(trigger.getAttribute("data-open-dialog"));
@@ -405,7 +436,7 @@
     });
   });
 
-  // 7. Live clinic brand name switcher (?brand=... + presets + custom input)
+  // 12. Live clinic brand name switcher (?brand=... + presets + custom input)
   var brandNodes = document.querySelectorAll("[data-brand-name]");
   var presetButtons = document.querySelectorAll("[data-brand-preset]");
   var brandInput = document.getElementById("customBrandInput");
